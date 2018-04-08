@@ -72,47 +72,48 @@
     </div>
 
     <script type="text/javascript">
+      function initMap(){
+        var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
 
-      var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
+            //map types
+        var roadMutant = L.gridLayer.googleMutant({
+          maxZoom: 24,
+          type:'roadmap'
+        }).addTo(map);
+        var satMutant = L.gridLayer.googleMutant({
+          maxZoom: 24,
+          type:'satellite'
+        });
+        var hybridMutant = L.gridLayer.googleMutant({
+          maxZoom: 24,
+          type:'hybrid'
+        });
 
-          //map types
-  		var roadMutant = L.gridLayer.googleMutant({
-  			maxZoom: 24,
-  			type:'roadmap'
-  		}).addTo(map);
-  		var satMutant = L.gridLayer.googleMutant({
-  			maxZoom: 24,
-  			type:'satellite'
-  		});
-  		var hybridMutant = L.gridLayer.googleMutant({
-  			maxZoom: 24,
-  			type:'hybrid'
-  		});
+        L.control.layers({
+          Roadmap: roadMutant,
+          Aerial: satMutant,
+          Hybrid: hybridMutant,
+        }, {}, {
+          collapsed: false
+        }).addTo(map);
 
-  		L.control.layers({
-  			Roadmap: roadMutant,
-  			Aerial: satMutant,
-  			Hybrid: hybridMutant,
-  		}, {}, {
-  			collapsed: false
-  		}).addTo(map);
-
-  		var kyiv = [50.5, 30.5],
-  			lnd = [51.51, -0.12],
-  			sf = [37.77, -122.42],
-  			dc = [38.91, -77.04],
-  			trd = [63.41, 10.41],
-  			madBounds = [[40.70, -4.19], [40.12, -3.31]],
-  			mad = [40.40, -3.7];
+        // markers
+        var kyiv = [50.5, 30.5],
+          lnd = [51.51, -0.12],
+          sf = [37.77, -122.42],
+          dc = [38.91, -77.04],
+          trd = [63.41, 10.41],
+          madBounds = [[40.70, -4.19], [40.12, -3.31]],
+          mad = [40.40, -3.7];
 
 
-  		var marker1 = L.marker(kyiv).addTo(map),
-  			marker2 = L.marker(lnd).addTo(map),
-  			marker3 = L.marker(dc).addTo(map),
-  			marker4 = L.marker(sf).addTo(map),
-  			marker5 = L.marker(trd).addTo(map),
-  			marker6 = L.marker(mad).addTo(map);
-
+        var marker1 = L.marker(kyiv).addTo(map),
+          marker2 = L.marker(lnd).addTo(map),
+          marker3 = L.marker(dc).addTo(map),
+          marker4 = L.marker(sf).addTo(map),
+          marker5 = L.marker(trd).addTo(map),
+          marker6 = L.marker(mad).addTo(map);
+      }
   	</script>
   </body>
 
