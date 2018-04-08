@@ -59,6 +59,10 @@
       <div id="export-panel" class="modal fade"></div>
 
       <div id="map content" class="main">
+        <div id="streetview" style="display: none"></div>
+
+        <div id="map" class="map" data-has-boundaries = "False" data-has-polygons = "False">
+        </div>
         <script type="text/javascript">
         //function initMap(){
           var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
@@ -104,10 +108,6 @@
         //}
         </script>
 
-        <div id="streetview" style="display: none"></div>
-
-        <div id="map" class="map" data-has-boundaries = "False" data-has-polygons = "False">
-        </div>
 
         <div id="sidebar" class="sidebar">
           <h1>Info</h1>
