@@ -4,7 +4,7 @@ body {
 }
 
 #map {
-  width: 80vw;
+  width: 75vw;
   height: calc( 90vh - 64px );
 }
 
