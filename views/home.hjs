@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<script src="https://maps.googleapis.com/maps/api/js" async defer></script>
+  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc&callback=initMap" async defer></script>
 
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
     <!-- the css file is linked to other website, may change later -->
     <!-- <script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
     <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
@@ -58,13 +58,15 @@
       <div id="sub header"></div>
       <div id="export-panel" class="modal fade"></div>
 
-      <div id="map content">
+      <div id="map content" class="main">
         <div id="streetview" style="display: none"></div>
 
         <div id="map" class="map" data-has-boundaries = "False" data-has-polygons = "False">
         </div>
 
-        <div id="sidebar">
+        <div id="sidebar" class="sidebar">
+          <h1>Info</h1>
+          <p>{{ treeName }}</p>
         </div><!--side bar-->
       </div>
     </div>

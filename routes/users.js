@@ -9,7 +9,6 @@ var usersModel = require('../models/usersModel');
 
 // GET to Add Character page
 router.get('/addTree', addTree);
-//YUQING: jin dao addcharacter zhe ge wang zhan (route)
 
 // POST data from
 router.post('/record', record_data);

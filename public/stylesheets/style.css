@@ -4,7 +4,7 @@ body {
 }
 
 #map {
-  width: calc( 90vw - 64px );
+  width: 80vw;
   height: calc( 90vh - 64px );
 }
 
@@ -42,4 +42,37 @@ body {
   float: right;
   margin-right: 32px;
   display: inline-block;
+}
+.main{
+  float: left;
+}
+.sidebar{
+  position: absolute;
+  height: 100%;
+  width: 20vw;
+  right: 0;
+  top: 120px;
+  background-color: #eee;
+  color: #444;
+  border: solid;
+  text-align: left;
+  outline: none;
+  transition: 0.5s;
+}
+.sidebar h1 {
+  padding: 3px 8px 6px 32px;
+  font-size: 35px;
+}
+.sidebar p {
+  padding: 3px 8px 6px 32px;
+  font-size: 15px;
+}
+.active, .sidebar:hover{
+  background-color: : #ccc;
+}
+.panel{
+  padding: 0 18px;
+  display: none;
+  background-color: #fff;
+  overflow: hidden;
 }
