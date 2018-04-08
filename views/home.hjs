@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc&callback=initMap" async defer></script>
+  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc" async defer></script>
 
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -60,7 +60,7 @@
 
       <div id="map content" class="main">
         <script type="text/javascript">
-        function initMap(){
+        //function initMap(){
           var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
 
               //map types
@@ -101,9 +101,9 @@
             marker4 = L.marker(sf).addTo(map),
             marker5 = L.marker(trd).addTo(map),
             marker6 = L.marker(mad).addTo(map);
-        }
+        //}
         </script>
-        
+
         <div id="streetview" style="display: none"></div>
 
         <div id="map" class="map" data-has-boundaries = "False" data-has-polygons = "False">
