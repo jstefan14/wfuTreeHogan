@@ -111,7 +111,35 @@
 
         <div id="sidebar" class="sidebar">
           <h1>Info</h1>
-          <p>{{ treeName }}</p>
+          <button onclick="treeInfo('infoBar')" class="left-align green">Tree Information</button>
+          <div id="infoBar" class="hide">
+            <p class="panel">Tree Info to be shown here </p>
+          </div>
+          <button onclick="generalInfo('generalBar')" class="left-align blue">Website</button>
+          <div id="generalBar" class="hide">
+            <p class="panel">Other info to be shown here </p>
+          </div>
+          <script>
+          function treeInfo(id) {
+              var x = document.getElementById(id);
+              if (x.className.indexOf("show") == -1) {
+                  x.className += " show";
+              }
+              else {
+                  x.className = x.className.replace(" show", "");
+              }
+          }
+
+          function generalInfo(id) {
+              var x = document.getElementById(id);
+              if (x.className.indexOf("show") == -1) {
+                  x.className += " show";
+              }
+              else {
+                  x.className = x.className.replace(" show", "");
+              }
+          }
+          </script>
         </div><!--side bar-->
       </div>
     </div>

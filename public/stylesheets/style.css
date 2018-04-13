@@ -60,19 +60,52 @@ body {
   transition: 0.5s;
 }
 .sidebar h1 {
-  padding: 3px 8px 6px 32px;
-  font-size: 35px;
+  padding: 3px 8px 0px 32px;
+  font-size: 30px;
 }
 .sidebar p {
   padding: 3px 8px 6px 32px;
   font-size: 15px;
 }
+.sidebar button {
+  border: 1px solid green;
+  border-radius: 5px;
+  width: 100%;
+  display:inline-block;
+  padding:8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap;
+}
 .active, .sidebar:hover{
   background-color: : #ccc;
 }
 .panel{
-  padding: 0 18px;
-  display: none;
-  background-color: #fff;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
+  border: 1px solid green;
+  border-radius: 5px;
 }
+.green{
+  color: white!important;
+  background-color: green!important;
+}
+.blue{
+  color: white!important;
+  background-color: blue!important;
+}
+
+.left-align{text-align: left!important}
+.right-align{text-align: right!important}
+.hide{display:none!important}
+.show{display:block!important}
+.show-inline-block{display:inline-block!important}
