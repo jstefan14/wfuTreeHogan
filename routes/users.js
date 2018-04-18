@@ -15,6 +15,9 @@ router.post('/record', record_data);
 
 // SEARCH function
 router.post('/search', search_tree);
+
+// RESET function
+router.post('/reset', reset_home_page);
 //
 // Functions responding to HTTP requests
 //
@@ -39,6 +42,11 @@ function record_data(req, res, next) {
 }
 
 function search_tree(req, res, next) {
+	console.log(req.body);
+	res.redirect('/');	// reload the page
+}
+
+function reset_home_page(req, res, next) {
 	console.log(req.body);
 	res.redirect('/');	// reload the page
 }

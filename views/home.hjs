@@ -90,21 +90,10 @@
           }).addTo(map);
 
           // markers
-          var kyiv = [50.5, 30.5],
-            lnd = [51.51, -0.12],
-            sf = [37.77, -122.42],
-            dc = [38.91, -77.04],
-            trd = [63.41, 10.41],
-            madBounds = [[40.70, -4.19], [40.12, -3.31]],
-            mad = [40.40, -3.7];
+          var kyiv = [36, -80]
 
 
-          var marker1 = L.marker(kyiv).addTo(map),
-            marker2 = L.marker(lnd).addTo(map),
-            marker3 = L.marker(dc).addTo(map),
-            marker4 = L.marker(sf).addTo(map),
-            marker5 = L.marker(trd).addTo(map),
-            marker6 = L.marker(mad).addTo(map);
+          var marker1 = L.marker(kyiv).addTo(map)
         //}
         </script>
 
