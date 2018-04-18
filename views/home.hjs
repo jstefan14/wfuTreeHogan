@@ -90,7 +90,7 @@
           }).addTo(map);
 
           // markers
-          var kyiv = [36, -80]
+          var kyiv = [36.1352, -80.2763]
 
 
           var marker1 = L.marker(kyiv).addTo(map)
