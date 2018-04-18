@@ -42,7 +42,7 @@
       <div id="logo and search" class="black_back">
         <div class="logo" id="logo">
           <a href="/">
-            <img id="site-logo" src="./image/WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
+            <img id="site-logo" src="/image/WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
           </a >
         </div>
         <div id = "search" class="search">

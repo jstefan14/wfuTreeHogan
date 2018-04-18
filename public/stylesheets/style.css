@@ -48,7 +48,7 @@ body {
 }
 .sidebar{
   position: absolute;
-  height: 100%;
+  height: calc(90vh - 64px);
   width: 20vw;
   right: 0;
   top: 120px;
