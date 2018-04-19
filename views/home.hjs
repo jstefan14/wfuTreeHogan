@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
   	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
-
+  	<script src="data.json"></script>
   	<script type="text/javascript" src="./Leaflet.GoogleMutant.js"></script>
 
 
@@ -63,40 +63,6 @@
 
         <div id="map" class="map" data-has-boundaries = "False" data-has-polygons = "False">
         </div>
-        <script type="text/javascript">
-        //function initMap(){
-          var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
-
-              //map types
-          var roadMutant = L.gridLayer.googleMutant({
-            maxZoom: 24,
-            type:'roadmap'
-          }).addTo(map);
-          var satMutant = L.gridLayer.googleMutant({
-            maxZoom: 24,
-            type:'satellite'
-          });
-          var hybridMutant = L.gridLayer.googleMutant({
-            maxZoom: 24,
-            type:'hybrid'
-          });
-
-          L.control.layers({
-            Roadmap: roadMutant,
-            Aerial: satMutant,
-            Hybrid: hybridMutant,
-          }, {}, {
-            collapsed: false
-          }).addTo(map);
-
-          // markers
-          var kyiv = [36.1352, -80.2763]
-
-
-          var marker1 = L.marker(kyiv).addTo(map)
-        //}
-        </script>
-
 
         <div id="sidebar" class="sidebar">
           <h1>Info</h1>
@@ -104,33 +70,76 @@
           <div id="infoBar" class="hide">
             <p class="panel">Tree Info to be shown here </p>
           </div>
+
           <button onclick="generalInfo('generalBar')" class="left-align blue">Website</button>
           <div id="generalBar" class="hide">
             <p class="panel">Other info to be shown here </p>
           </div>
           <script>
-          function treeInfo(id) {
-              var x = document.getElementById(id);
-              if (x.className.indexOf("show") == -1) {
-                  x.className += " show";
-              }
-              else {
-                  x.className = x.className.replace(" show", "");
-              }
-          }
+            function treeInfo(id) {
+                var x = document.getElementById(id);
+                if (x.className.indexOf("show") == -1) {
+                    x.className += " show";
+                }
+                else {
+                    x.className = x.className.replace(" show", "");
+                }
+            }
 
-          function generalInfo(id) {
-              var x = document.getElementById(id);
-              if (x.className.indexOf("show") == -1) {
-                  x.className += " show";
-              }
-              else {
-                  x.className = x.className.replace(" show", "");
-              }
-          }
+            function generalInfo(id) {
+                var x = document.getElementById(id);
+                if (x.className.indexOf("show") == -1) {
+                    x.className += " show";
+                }
+                else {
+                    x.className = x.className.replace(" show", "");
+                }
+            }
           </script>
         </div><!--side bar-->
       </div>
+      <script type="text/javascript">
+        var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
+
+            //map types
+        var roadMutant = L.gridLayer.googleMutant({
+          maxZoom: 24,
+          type:'roadmap'
+        }).addTo(map);
+        var satMutant = L.gridLayer.googleMutant({
+          maxZoom: 24,
+          type:'satellite'
+        });
+        var hybridMutant = L.gridLayer.googleMutant({
+          maxZoom: 24,
+          type:'hybrid'
+        });
+
+        L.control.layers({
+          Roadmap: roadMutant,
+          Aerial: satMutant,
+          Hybrid: hybridMutant,
+        }, {}, {
+          collapsed: false
+        }).addTo(map);
+
+        var xhttp = new XMLHttpRequest();
+        var x = document.getElementById('infoBar');
+
+        // markers
+        for(var i = 0; i < data.Trees.length; i++){
+          var a = data.Trees[i].Longitude;
+          var lon = parseFloat(a);
+          var b = data.Trees[i].Latitude;
+          var lat = parseFloat(b);
+          L.marker([lat,lon]).addTo(map).bindPopup("My treeID is "+data.Trees[i].Name+".");
+        }
+
+        function displayInfo(m){
+          
+        }
+
+      </script>
     </div>
   </body>
 
