@@ -64,11 +64,11 @@
 
   	<div>
   	<h1>Current List</h1>
-  	 <ul>
-  	 {{#users}}   <!-- Iterate over the array in users variable -->
-  	 	<li>{{comName}} {{sciName}} {{longitude}} {{latitude}} {{family}} {{order}} {{type}}</li>  <!-- fields in the array entry -->
-  	 {{/users}}	<!-- end of loop -->
-  	 </ul>
+  	 <!-- <ul>
+  	 {{#users}}
+  	 	<li>{{comName}} {{sciName}} {{longitude}} {{latitude}} {{family}} {{order}} {{type}}</li>
+  	 {{/users}}	
+  	 </ul> -->
   	</div>
 
     <div>

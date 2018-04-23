@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 // Load the data model
-var usersModel = require('../models/usersModel');
 
 //*************************************************//
 // All of these routes are relative to /users      //
@@ -29,15 +28,12 @@ function addTree(req, res, next) {
 	// par2 : data to be used when rendering the view
   res.render(
   	'addTree',
-  	{ title: 'Add Tree',
-  	  users: usersModel
-  	}
+  	{ title: 'Add Tree' }
   	);
 }
 
 function record_data(req, res, next) {
 	console.log(req.body); // show in the console what the user entered
-	usersModel.push(req.body); // Add the user data to the users_data dataset
 	res.redirect('/users/addTree');	// reload the page
 }
 
