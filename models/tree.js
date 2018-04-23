@@ -8,7 +8,7 @@ var TreeSchema = new Schema(
     longitude: {type: String, required: true},
     latutude: {type: String, required: true},
     common_name: {type: String, required: true},
-    date_collected: {type: Date},
+    date_collected: {type: Date, default: Date.now},
     height: {type: Number, min: 0},
     DBH: {type: Number, min: 0},
     first: {type: Number},
