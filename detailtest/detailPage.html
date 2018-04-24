@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc" async defer></script>
+
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+  	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
+  	<script type="text/javascript" src="Leaflet.GoogleMutant.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+	
+	<title>WFU Tree Map | Planting Site 12927</title>
+	<link rel='stylesheet' href='style.css' />
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="myScript.js"></script>
+	<meta charset=utf-8 />
+</head>
+<body>
+	
+	<div id="wrapper">
+      <!-- <div id="map" style="width:500px; height:500px" ></div> -->
+      <!-- top nav bar -->
+      <div id="navigation bar" class="navbar">
+        <div id="navigation bar buttons">
+          <ul>
+            <li> <a href="/">Home</a> </li>
+            <li> <a href="/users/addTree">Add a Tree</a> </li>
+          </ul>
+        </div>
+      </div>
+      <!-- logo and search -->
+      <div id="logo and search" class="black_back">
+        <div class="logo" id="logo">
+          <a href="/">
+          	<!-- CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE logo location -->
+            <img id="site-logo" src="WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
+          </a >
+        </div>
+        <div id = "search" class="search">
+          <form action="/users/search" method="post">
+            <input type="text" placeholder="Tree Name..." style="margin-top: 4px; float: right;">
+            <br>
+            <input type="submit" value="Search" style="margin-top: 4px; float: right;">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+    <div class="wrapper" style="border:50px solid lightgray;">
+
+      <div class="row">
+		  <div class="column1" style="background-color: white;">
+		  	<div class="block" style="border:15px solid white;">
+			    <img src="tree.png" alt="Tree :)" width="300" height="250">
+			    <input type='file' id="files" onchange="readURL(this);" />
+			</div>
+		  	<div class="block" style="border:15px solid white;">
+					<!-- <div class="progress">
+          	<div class="progress-bar-info" style="width: 0%; height: 100%"></div>
+        	</div> -->
+					<br>
+					<div class="wrapper" style="border: 5px solid white; background: white;">
+					<div class = "round">
+						<h3>Recent Update</h3>
+						<p>Rocky uploaded a new photo on April 22</p>
+						<div class="progress">
+					    	<div class="progress-bar" style="width: 75%;"></div>
+					 	</div>
+						<h4>10% complete</h4>
+					</div>
+				</div>
+			<div class="wrapper" style="border: 5px solid white; background: white;">
+					<div class = "round">
+						<h3>Edit History</h3>
+						<h4>Rocky</h4>
+						<p class="text-muted">Feb. 15, 2016 (2&nbsp;years, 2&nbsp;months ago)</p>
+						<ul>
+							<li>add a photo</li>
+						</ul>
+						<h4>Alex</h4>
+						<p class="text-muted">Feb. 15, 2016 (2&nbsp;years, 2&nbsp;months ago)</p>
+						<ul>
+							<li>created a planting site</li>
+							<li>set address street to 117 Lower College Road</li>
+							<li>made the tree editable</li>
+							<li>set the location</li>
+						</ul>
+					</div>
+				</div>
+			<div class="wrapper" style="border: 5px solid white; background: white;">
+					<div class="round">
+  					<h3>Nearby Trees</h3>
+						<ul>
+							<li><a href="/asheville/features/14825/">14,825</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		  </div>
+
+		  <div class="column2" style="background-color:white;">
+		  	<div class="block" style="border:15px solid white">
+			    <h1>Pin Oak</h1>
+			    <p>161 South Charlotte Street</p>
+			    <button class="button button2">Edit</button>
+				<button class="button button3">Delete</button>
+				<h2>Tree Information</h2>
+				<table>
+				  	<tr>
+					    <td>Tree Number</td>
+					    <td>12927</td>
+					</tr>
+					<tr>
+						<td>Common Name</td>
+						<td> Pin Oak </td>
+					</tr>
+					<tr>
+						<td>Scientific Name</td>
+						<td>Quercus palustris</td>
+					</tr>
+					<tr>
+						<td>Trunk Diameter</td>
+						<td>10.0 in</td>
+					</tr>
+					<tr>
+						<td>Tree Height</td>
+						<td>40.0 ft</td>
+					</tr>
+				</table>
+			</div>
+		  </div>
+		  <div class="column3" style="background-color:white;">
+		    <div class="block" style="border:15px solid white">
+				<button class="button button4">Share</button>
+		        <div id="map" class="map" data-has-boundaries = "False" data-has-polygons = "False"></div>
+
+			</div>
+		  </div>
+		</div>
+    </div>
+
+  <footer></footer>
+</div>
+
+ </body>
+</html>
