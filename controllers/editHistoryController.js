@@ -12,7 +12,19 @@ exports.edit_history_detail = function(req, res) {
 
 // Display edit_history create form on GET.
 exports.edit_history_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: edit_history create GET');
+  // let test = new edit_history(
+  // {
+  //   edit_number: 0,
+  //   tree_label: "test",
+  //   edit_field: "test",
+  //   old_value: "test",
+  //   new_value: "test",
+  //   edit_user: "test",
+  //   edit_date: "test"
+  // }
+  // );
+  // console.log(test);
+  // test.save();
 };
 
 // Handle edit_history create on POST.

@@ -27,4 +27,4 @@ SpeciesSchema
 });
 
 //Export model
-module.exports = mongoose.model('Species', SpeciesSchema);
+module.exports = mongoose.model('species', SpeciesSchema);

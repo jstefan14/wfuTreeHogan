@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var UserGroupSchema = new Schema(
   {
     user_group: {type: String, required: true},
-    privilege: {type: Array, required: true},
+    privilege: {type: Array, required: true}
   }
 );
 

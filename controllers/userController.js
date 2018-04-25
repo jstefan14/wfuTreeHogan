@@ -12,7 +12,16 @@ exports.user_detail = function(req, res) {
 
 // Display user create form on GET.
 exports.user_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: user create GET');
+  // let test = new user(
+  //   {
+  //     user_id: "0000",
+  //     first_name: "test",
+  //     last_name: "test",
+  //     user_group: "test"
+  //   }
+  // );
+  // console.log(test);
+  // test.save();
 };
 
 // Handle user create on POST.

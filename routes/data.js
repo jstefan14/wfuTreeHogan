@@ -35,7 +35,7 @@ router.post('/tree/:id/update', tree_controller.tree_update_post);
 router.get('/tree/:id', tree_controller.tree_detail);
 
 // GET request for list of all tree items.
-router.get('/trees', tree_controller.tree_list);
+router.get('/tree', tree_controller.tree_list);
 
 /// species ROUTES ///
 
@@ -87,7 +87,7 @@ router.post('/user/:id/update', user_controller.user_update_post);
 router.get('/user/:id', user_controller.user_detail);
 
 // GET request for list of all user.
-router.get('/users', user_controller.user_list);
+router.get('/user', user_controller.user_list);
 
 /// userGroup ROUTES ///
 
@@ -113,7 +113,7 @@ router.post('/userGroup/:id/update', user_group_controller.user_group_update_pos
 router.get('/userGroup/:id', user_group_controller.user_group_detail);
 
 // GET request for list of all userGroup.
-router.get('/userGroups', user_group_controller.user_group_list);
+router.get('/userGroup', user_group_controller.user_group_list);
 
 /// edit_history ROUTES ///
 
@@ -139,6 +139,6 @@ router.post('/editHistory/:id/update', edit_history_controller.edit_history_upda
 router.get('/editHistory/:id', edit_history_controller.edit_history_detail);
 
 // GET request for list of all edit_history items.
-router.get('/editHistories', edit_history_controller.edit_history_list);
+router.get('/editHistory', edit_history_controller.edit_history_list);
 
 module.exports = router;

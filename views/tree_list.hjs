@@ -1,0 +1,24 @@
+<!--the user interface
+A templating language-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+  	<!-- {{ title }} tells HJS to use variable title when
+  		rendering this page -->
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<h1>{{ title }}</h1>
+
+  	<!-- This can be turned into a menu easily -->
+    <h1>Current List</h1>
+  	 <ul>
+  	 {{#tree_list}}   <!-- Iterate over the array in users variable -->
+  	 	<li>{{tree_label}} {{longitude}} {{latitude}}</li>  <!-- fields in the array entry -->
+  	 {{/tree_list}}	<!-- end of loop -->
+  	</ul>
+    <p></p>
+  </body>
+</html>

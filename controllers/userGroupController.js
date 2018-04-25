@@ -12,7 +12,14 @@ exports.user_group_detail = function(req, res) {
 
 // Display user_group create form on GET.
 exports.user_group_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: user_group create GET');
+    // let test = new user_group(
+    //   {
+    //     user_group: "test",
+    //     privilege: ["add", "delete"]
+    //   }
+    // );
+    // console.log(test);
+    // test.save();
 };
 
 // Handle user_group create on POST.

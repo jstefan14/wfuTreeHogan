@@ -22,8 +22,8 @@ UserSchema
 UserSchema
 .virtual('url')
 .get(function () {
-  return '/data/User/' + this._id;
+  return '/data/user/' + this._id;
 });
 
 //Export model
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('user', UserSchema);
