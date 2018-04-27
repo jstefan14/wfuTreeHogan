@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
   	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
-  	<script src="data.json"></script>
   	<script type="text/javascript" src="./Leaflet.GoogleMutant.js"></script>
 
 
@@ -123,20 +122,32 @@
           collapsed: false
         }).addTo(map);
 
+        // ajax info bar
         var xhttp = new XMLHttpRequest();
         var x = document.getElementById('infoBar');
 
         // markers
-        for(var i = 0; i < data.Trees.length; i++){
-          var a = data.Trees[i].Longitude;
+        var tree_list = [
+          {{#tree_list}}
+          {
+          _id: "{{_id}}",
+          tree_label: "{{tree_label}}",
+          longitude: "{{longitude}}",
+          latitude: "{{latitude}}"
+          },
+          {{/tree_list}}
+        ];
+
+        for(var i = 0; i < tree_list.length; i++){
+          var a = tree_list[i].longitude;
           var lon = parseFloat(a);
-          var b = data.Trees[i].Latitude;
+          var b = tree_list[i].latitude;
           var lat = parseFloat(b);
-          L.marker([lat,lon]).addTo(map).bindPopup("My treeID is "+data.Trees[i].Name+".");
+          L.marker([lat,lon]).addTo(map).bindPopup("My treeID is " + tree_list[i]._id  + ":" + tree_list[i].tree_label + ".");
         }
 
         function displayInfo(m){
-          
+
         }
 
       </script>
