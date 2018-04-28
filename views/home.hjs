@@ -32,7 +32,7 @@
         <div id="navigation bar buttons">
           <ul>
             <li> <a href="/">Home</a> </li>
-            <li> <a href="/users/addTree">Add a Tree</a> </li>
+            <li> <a href="/data/tree/create">Add a Tree</a> </li>
           </ul>
         </div>
       </div>
@@ -67,7 +67,8 @@
           <h1>Info</h1>
           <button onclick="treeInfo('infoBar')" class="left-align green">Tree Information</button>
           <div id="infoBar" class="hide">
-            <p class="panel">Tree Info to be shown here </p>
+            <p id="infoP" class="panel">Tree Info to be shown here </p>
+            <button id='detailButton'>Details</button>
           </div>
 
           <button onclick="generalInfo('generalBar')" class="left-align blue">Website</button>
@@ -143,11 +144,27 @@
           var lon = parseFloat(a);
           var b = tree_list[i].latitude;
           var lat = parseFloat(b);
-          L.marker([lat,lon]).addTo(map).bindPopup("My treeID is " + tree_list[i]._id  + ":" + tree_list[i].tree_label + ".");
+          L.marker([lat,lon])
+          .addTo(map)
+          .addEventListener('click', L.bind(displayInfo, null, tree_list[i]._id))
+          .bindPopup("My treeID is " + tree_list[i]._id  + ":" + tree_list[i].tree_label + ".");
         }
 
         function displayInfo(m){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("infoP").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", "/data/tree/" + m + "/info", true);
+          xhttp.send();
 
+          if (x.className.indexOf("show") == -1) {
+              x.className += " show";
+          }
+
+          document.getElementById("detailButton").addEventListener ("click", function(){location.href = "/data/tree/"+m;});
         }
 
       </script>

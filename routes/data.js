@@ -34,6 +34,9 @@ router.post('/tree/:id/update', tree_controller.tree_update_post);
 // GET request for one tree.
 router.get('/tree/:id', tree_controller.tree_detail);
 
+// GET request for one tree info.
+router.get('/tree/:id/info', tree_controller.tree_info);
+
 // GET request for list of all tree items.
 router.get('/tree', tree_controller.tree_list);
 

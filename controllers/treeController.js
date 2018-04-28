@@ -1,4 +1,5 @@
 var tree = require('../models/tree');
+var async = require('async');
 
 // exports.index = function(req, res) {
 //     res.send('NOT IMPLEMENTED: Site Home Page');
@@ -16,12 +17,63 @@ exports.tree_list = function(req, res) {
 };
 
 // Display detail page for a specific tree.
-exports.tree_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: tree detail: ' + req.params.id);
+exports.tree_detail = function(req, res, next) {
+  async.parallel({
+    tree: function(callback) {
+      tree.findById(req.params.id)
+          .exec(callback);
+    },
+    },
+    function(err, results) {
+      if (err) {return next(err);}
+      if (results.tree==null) { // No results.
+          var err = new Error('Tree not found');
+          err.status = 404;
+          return next(err);
+      }
+        // Successful, so render.
+      res.render('treeDetail', { title: 'Tree Detail',
+                                 tree_label: results.tree.tree_label,
+                                 common_name: results.tree.common_name,
+                                 DBH: results.tree.DBH,
+                                 height: results.tree.height} );
+    });
 };
+
+exports.tree_info = function(req, res, next){
+  console.log(req.params.id);
+  async.parallel({
+    tree: function(callback) {
+      tree.findById(req.params.id)
+          .exec(callback);
+    },
+    },
+    function(err, results) {
+      if (err) {return next(err);}
+      if (results.tree==null) { // No results.
+          var err = new Error('Tree not found');
+          err.status = 404;
+          return next(err);
+      }
+        // Successful, so render.
+      res.send("common Name: " + "<br>" + results.tree.common_name);
+    });
+}
 
 // Display tree create form on GET.
 exports.tree_create_get = function(req, res) {
+  //FIXME not finished
+  res.render(
+    'addTree',
+    { title: 'Add Tree' }
+  );
+};
+
+// Handle tree create on POST.
+exports.tree_create_post = function(req, res) {
+  //FIXME not finished
+  console.log(req);
+  res.send('NOT IMPLEMENTED: tree create POST: ');
   // let test = new tree({
   //   tree_label: "test_tree",
   //   longitude: "0",
@@ -36,11 +88,6 @@ exports.tree_create_get = function(req, res) {
   // });
   // console.log(test);
   // test.save();
-};
-
-// Handle tree create on POST.
-exports.tree_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: tree create POST');
 };
 
 // Display tree delete form on GET.

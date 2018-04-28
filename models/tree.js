@@ -11,6 +11,10 @@ var TreeSchema = new Schema(
     date_collected: {type: String, default: (Date.now).toString()},
     height: {type: String},
     DBH: {type: String},
+    "Branch 1 (cm)": {type: String},
+    "Branch 2 (cm)": {type: String},
+    "Branch 3 (cm)": {type: String},
+    "Branch 4 (cm)": {type: String},
     first: {type: String},
     collector: {type: String, required: true},
     datum: {type: String}

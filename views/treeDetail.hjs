@@ -7,21 +7,21 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
   	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
-  	<script type="text/javascript" src="Leaflet.GoogleMutant.js"></script>
+  	<script type="text/javascript" src="/Leaflet.GoogleMutant.js"></script>
 
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
-	
-	<title>WFU Tree Map | Planting Site 12927</title>
-	<link rel='stylesheet' href='style.css' />
+
+	<title>{{title}}</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script type="text/javascript" src="myScript.js"></script>
+	<script type="text/javascript" src="/js/treeDetail.js"></script>
 	<meta charset=utf-8 />
 </head>
 <body>
-	
+
 	<div id="wrapper">
       <!-- <div id="map" style="width:500px; height:500px" ></div> -->
       <!-- top nav bar -->
@@ -38,7 +38,7 @@
         <div class="logo" id="logo">
           <a href="/">
           	<!-- CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE logo location -->
-            <img id="site-logo" src="WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
+            <img id="site-logo" src="/image/WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
           </a >
         </div>
         <div id = "search" class="search">
@@ -57,7 +57,7 @@
       <div class="row">
 		  <div class="column1" style="background-color: white;">
 		  	<div class="block" style="border:15px solid white;">
-			    <img src="tree.png" alt="Tree :)" width="300" height="250">
+			    <img src="/image/tree.png" alt="Tree :)" width="300" height="250">
 			    <input type='file' id="files" onchange="readURL(this);" />
 			</div>
 		  	<div class="block" style="border:15px solid white;">
@@ -106,31 +106,31 @@
 
 		  <div class="column2" style="background-color:white;">
 		  	<div class="block" style="border:15px solid white">
-			    <h1>Pin Oak</h1>
-			    <p>161 South Charlotte Street</p>
+			    <h1>{{common_name}}</h1>
+			    <p>some location</p>
 			    <button class="button button2">Edit</button>
 				<button class="button button3">Delete</button>
 				<h2>Tree Information</h2>
 				<table>
-				  	<tr>
-					    <td>Tree Number</td>
-					    <td>12927</td>
+				  <tr>
+				    <td>Tree Number</td>
+				    <td>{{tree_label}}</td>
 					</tr>
 					<tr>
 						<td>Common Name</td>
-						<td> Pin Oak </td>
+						<td>{{common_name}}</td>
 					</tr>
 					<tr>
 						<td>Scientific Name</td>
-						<td>Quercus palustris</td>
+						<td>unknown</td>
 					</tr>
 					<tr>
 						<td>Trunk Diameter</td>
-						<td>10.0 in</td>
+						<td>{{DBH}}</td>
 					</tr>
 					<tr>
 						<td>Tree Height</td>
-						<td>40.0 ft</td>
+						<td>{{height}}</td>
 					</tr>
 				</table>
 			</div>

@@ -2,7 +2,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0
 }
-
+.round {
+  border: 1px solid #ebeced;
+  background: #f1f2f2;
+  border-radius: 8px;
+}
 #map {
   width: 75vw;
   height: calc( 90vh - 64px );
@@ -109,3 +113,117 @@ body {
 .hide{display:none!important}
 .show{display:block!important}
 .show-inline-block{display:inline-block!important}
+
+#rcorners1{
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+}
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+frame {
+  position: absolute;
+top: 10%;
+bottom: 20%;
+left: 15%;
+right: 15%;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+* {
+    box-sizing: border-box;
+}
+/* Create three equal columns that floats next to each other */
+.column1 {
+    float: left;
+    width: 25%;
+    padding: 10px;
+}
+.column2 {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+.column3 {
+    float: left;
+    width: 25%;
+    padding: 10px;
+}
+.mywrap {
+  padding:35px;
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button4 {
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    float: right;
+
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td {
+    border-top: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */
+.button4 {background-color: #D8BFD8; color: black;}
