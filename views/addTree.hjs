@@ -60,16 +60,16 @@
       <br>
 
       Branch 1 (cm)<br>
-      <input type="text" name="Branch 1 (cm)" value="">
+      <input type="text" name="Branch_1" value="">
       <br>
       Branch 2 (cm):<br>
-      <input type="text" name="Branch 2 (cm)" value="">
+      <input type="text" name="Branch_2" value="">
       <br>
       Branch 3 (cm):<br>
-      <input type="text" name="Branch 3 (cm)" value="">
+      <input type="text" name="Branch_3" value="">
       <br>
       Branch 4 (cm):<br>
-      <input type="text" name="Branch 4 (cm)" value="">
+      <input type="text" name="Branch_4" value="">
       <br>
       First:<br>
       <input type="text" name="first" value="">
@@ -85,7 +85,9 @@
   	</form>
 
   	<div>
-
+      {{#errors}}   <!-- Iterate over the array in users variable -->
+       <li>{{msg}} <!-- fields in the array entry -->
+      {{/errors}}	<!-- end of loop -->
   	</div>
 
     <div>
