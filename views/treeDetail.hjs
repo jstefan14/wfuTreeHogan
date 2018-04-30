@@ -37,7 +37,6 @@
       <div id="logo and search" class="black_back">
         <div class="logo" id="logo">
           <a href="/">
-          	<!-- CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE logo location -->
             <img id="site-logo" src="/image/WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
           </a >
         </div>
@@ -109,7 +108,12 @@
 			    <h1>{{common_name}}</h1>
 			    <p>some location</p>
 			    <button class="button button2">Edit</button>
-				<button class="button button3">Delete</button>
+          <form class="button button3" action="/data/tree/{{id}}/delete" method="post">
+				     <button id="deleteButton" class="button button3" type="submit">Delete</button>
+          </form>
+          <!-- <script>
+            document.getElementById("deleteButton").addEventListener ("click", function(){location.href = "/data/tree/"+m+"/delete";});
+          </script> -->
 				<h2>Tree Information</h2>
 				<table>
 				  <tr>
@@ -122,7 +126,7 @@
 					</tr>
 					<tr>
 						<td>Scientific Name</td>
-						<td>unknown</td>
+						<td>{{#species}}{{scientific_name}}{{/species}}</td>
 					</tr>
 					<tr>
 						<td>Trunk Diameter</td>

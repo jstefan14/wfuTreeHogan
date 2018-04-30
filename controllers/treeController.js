@@ -1,4 +1,5 @@
 var tree = require('../models/tree');
+var species = require('../models/species');
 var async = require('async');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -8,12 +9,20 @@ const { sanitizeBody } = require('express-validator/filter');
 // };
 
 // Display list of all trees.
-exports.tree_list = function(req, res) {
-  tree.find({}, 'tree_label longitude latitude')
-  .populate()
+exports.tree_list = function(req, res, next) {
+  tree.aggregate([{
+   $lookup:
+     {
+       from: 'species',
+       localField: 'common_name',
+       foreignField: 'common_name',
+       as: 'species'
+     }
+   }])
   .exec(function (err, list_trees) {
     if (err) { return next(err); }
     //Successful, so render
+    console.log(list_trees);
     res.render('tree_list', { title: 'Tree List', tree_list: list_trees });
   });
 };
@@ -23,10 +32,24 @@ exports.tree_detail = function(req, res, next) {
   async.parallel({
     tree: function(callback) {
       tree.findById(req.params.id)
-          .exec(callback);
+      // tree.aggregate([
+      //   { $lookup:
+      //      {
+      //        from: 'species',
+      //        localField: 'common_name',
+      //        foreignField: 'common_name',
+      //        as: 'species'
+      //      }
+      //   }
+      //   ,
+      //   { $match: { '_id':  req.params.id} }
+      // ])
+      .exec(callback);
     },
     },
     function(err, results) {
+      console.log(results);
+      console.log(req.params.id);
       if (err) {return next(err);}
       if (results.tree==null) { // No results.
           var err = new Error('Tree not found');
@@ -35,7 +58,9 @@ exports.tree_detail = function(req, res, next) {
       }
         // Successful, so render.
       res.render('treeDetail', { title: 'Tree Detail',
+                                 id: results.tree._id,
                                  tree_label: results.tree.tree_label,
+                                 scientific_name: "",
                                  common_name: results.tree.common_name,
                                  DBH: results.tree.DBH,
                                  height: results.tree.height} );
@@ -165,7 +190,13 @@ exports.tree_delete_get = function(req, res) {
 
 // Handle tree delete on POST.
 exports.tree_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: tree delete POST');
+  tree.findByIdAndRemove(req.params.id, function (err, deletedTree) {
+    if (err) {
+      res.send('Error Deleting Data');
+    } else {
+    	res.redirect('/');
+    }
+  });
 };
 
 // Display tree update form on GET.

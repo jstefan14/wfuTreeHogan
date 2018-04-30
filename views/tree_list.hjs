@@ -16,7 +16,7 @@ A templating language-->
     <h1>Current List</h1>
   	 <ul>
   	 {{#tree_list}}   <!-- Iterate over the array in users variable -->
-  	 	<li>{{tree_label}} {{longitude}} {{latitude}}</li>  <!-- fields in the array entry -->
+  	 	<li>{{tree_label}} {{longitude}} {{latitude}} {{#species}} {{scientific_name}} {{/species}}</li>  <!-- fields in the array entry -->
   	 {{/tree_list}}	<!-- end of loop -->
   	</ul>
     <p></p>

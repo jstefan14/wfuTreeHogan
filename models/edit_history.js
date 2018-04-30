@@ -10,7 +10,7 @@ var EditHistorySchema = new Schema(
     old_value: {type: String, required: true},
     new_value: {type: String, required: true},
     edit_user: {type: String, required: true},
-    edit_date: {type: String, required: true},
+    edit_date: {type: String, required: true, default: (Date.now).toString()},
   }
 );
 
