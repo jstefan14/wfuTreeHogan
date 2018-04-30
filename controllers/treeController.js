@@ -1,5 +1,6 @@
 var tree = require('../models/tree');
 var species = require('../models/species');
+var mongoose = require('mongoose');
 var async = require('async');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -31,19 +32,21 @@ exports.tree_list = function(req, res, next) {
 exports.tree_detail = function(req, res, next) {
   async.parallel({
     tree: function(callback) {
-      tree.findById(req.params.id)
-      // tree.aggregate([
-      //   { $lookup:
-      //      {
-      //        from: 'species',
-      //        localField: 'common_name',
-      //        foreignField: 'common_name',
-      //        as: 'species'
-      //      }
-      //   }
-      //   ,
-      //   { $match: { '_id':  req.params.id} }
-      // ])
+      // tree.findById(req.params.id)
+      tree.aggregate([
+        // simulating a natural join query
+        { $lookup:
+           {
+             from: 'species',
+             localField: 'common_name',
+             foreignField: 'common_name',
+             as: 'species'
+           }
+        }
+        ,
+        // simulating a where query
+        { $match: { '_id':  mongoose.Types.ObjectId(req.params.id)} }
+      ])
       .exec(callback);
     },
     },
@@ -58,12 +61,12 @@ exports.tree_detail = function(req, res, next) {
       }
         // Successful, so render.
       res.render('treeDetail', { title: 'Tree Detail',
-                                 id: results.tree._id,
-                                 tree_label: results.tree.tree_label,
-                                 scientific_name: "",
-                                 common_name: results.tree.common_name,
-                                 DBH: results.tree.DBH,
-                                 height: results.tree.height} );
+                                 id: results.tree[0]._id,
+                                 tree_label: results.tree[0].tree_label,
+                                 scientific_name: results.tree[0].species[0].scientific_name,
+                                 common_name: results.tree[0].common_name,
+                                 DBH: results.tree[0].DBH,
+                                 height: results.tree[0].height} );
     });
 };
 

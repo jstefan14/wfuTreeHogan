@@ -107,7 +107,9 @@
 		  	<div class="block" style="border:15px solid white">
 			    <h1>{{common_name}}</h1>
 			    <p>some location</p>
-			    <button class="button button2">Edit</button>
+          <form class="button button2" action="" method="">
+				     <button id="editButton" class="button button2" type="submit">Edit</button>
+          </form>
           <form class="button button3" action="/data/tree/{{id}}/delete" method="post">
 				     <button id="deleteButton" class="button button3" type="submit">Delete</button>
           </form>
@@ -126,7 +128,7 @@
 					</tr>
 					<tr>
 						<td>Scientific Name</td>
-						<td>{{#species}}{{scientific_name}}{{/species}}</td>
+						<td>{{scientific_name}}</td>
 					</tr>
 					<tr>
 						<td>Trunk Diameter</td>
@@ -139,13 +141,13 @@
 				</table>
 			</div>
 		  </div>
-		  <div class="column3" style="background-color:white;">
+		  <!-- <div class="column3" style="background-color:white;">
 		    <div class="block" style="border:15px solid white">
 				<button class="button button4">Share</button>
 		        <div id="map" class="map" data-has-boundaries = "False" data-has-polygons = "False"></div>
 
 			</div>
-		  </div>
+		  </div> -->
 		</div>
     </div>
 
