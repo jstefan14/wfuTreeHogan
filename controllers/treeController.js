@@ -52,13 +52,16 @@ exports.tree_detail = function(req, res, next) {
     },
     function(err, results) {
       console.log(results);
-      console.log(req.params.id);
       if (err) {return next(err);}
-      if (results.tree==null) { // No results.
+      if (results.tree.length == 0) { // No results.
           var err = new Error('Tree not found');
           err.status = 404;
           return next(err);
       }
+      if (results.tree[0].species.length == 0){
+        results.tree[0].species.push({scientific_name: ""});
+      }
+      console.log(results);
         // Successful, so render.
       res.render('treeDetail', { title: 'Tree Detail',
                                  id: results.tree[0]._id,
