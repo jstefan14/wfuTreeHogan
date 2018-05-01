@@ -8,7 +8,7 @@ body {
   border-radius: 8px;
 }
 #map {
-  width: 75vw;
+  width: 80vw;
   height: calc( 90vh - 64px );
 }
 

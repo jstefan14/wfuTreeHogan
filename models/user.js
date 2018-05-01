@@ -4,10 +4,11 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema(
   {
-    user_id: {type: String, required: true},
+    _id: false, 
+    user_id: {type: String, key: true, required: true},
     first_name: {type: String, required: true},
     last_name: {type: String, required: true},
-    user_group: {type: String},
+    user_group: {type: Schema.ObjectId, ref: 'user_group', required: true},
   }
 );
 

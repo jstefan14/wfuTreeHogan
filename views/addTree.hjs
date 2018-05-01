@@ -49,9 +49,9 @@
       Latitude:<br>
       <input type="text" name="latitude" value="">
       <br>
-      Date and Time:<br>
+      <!-- Date and Time:<br>
       <input type="text" name="date_collected" value="">
-      <br>
+      <br> -->
       Height:<br>
       <input type="text" name="height" value="">
       <br>

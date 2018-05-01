@@ -129,7 +129,7 @@ exports.tree_create_post =   [
               longitude: req.body.longitude,
               latitude: req.body.latitude,
               common_name: req.body.common_name,
-              date_collected: req.body.date_collected,
+              // date_collected: req.body.date_collected,
               height: req.body.height,
               DBH: req.body.DBH,
               "Branch 1 (cm)": req.body.Branch_1,
@@ -167,27 +167,11 @@ exports.tree_create_post =   [
                        // Genre saved. Redirect to genre detail page.
                        res.redirect(new_tree.url);
                      });
-
                  }
-
              });
         }
     }
 ];
-  // let test = new tree({
-  //   tree_label: "test_tree",
-  //   longitude: "0",
-  //   latitude: "0",
-  //   common_name: "a random tree",
-  //   date_collected: "pretty much just now",
-  //   height: "1",
-  //   DBH: "1",
-  //   first: "1",
-  //   collector: "Alex",
-  //   datum: "Alex"
-  // });
-  // console.log(test);
-  // test.save();
 
 // Display tree delete form on GET.
 exports.tree_delete_get = function(req, res) {
