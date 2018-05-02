@@ -1,4 +1,5 @@
 var express = require('express');
+var tree = require('../models/tree');
 var router = express.Router();
 // Load the data model
 
@@ -8,9 +9,6 @@ var router = express.Router();
 
 // GET to Add Character page
 router.get('/addTree', addTree);
-
-// POST data from
-router.post('/record', record_data);
 
 // SEARCH function
 router.post('/search', search_tree);
@@ -32,19 +30,29 @@ function addTree(req, res, next) {
   	);
 }
 
-function record_data(req, res, next) {
-	console.log(req.body); // show in the console what the user entered
-	res.redirect('/users/addTree');	// reload the page
-}
 
 function search_tree(req, res, next) {
-	console.log(req.body);
-	res.redirect('/');	// reload the page
+	tree.find({"common_name": new RegExp(req.body.search_key, "i")}, 'tree_label longitude latitude')
+  .exec(function (err, list_trees) {
+    if (err) { return next(err); }
+    //Successful, so render
+		list_trees = JSON.stringify(list_trees);
+		list_trees = JSON.parse(list_trees);
+		res.render('home', {title: "Wake Forest Tree Map", tree_list: list_trees});
+  });
+	// res.redirect('/');	// reload the page
 }
 
 function reset_home_page(req, res, next) {
-	console.log(req.body);
-	res.redirect('/');	// reload the page
+  tree.find({}, 'tree_label longitude latitude')
+  .populate()
+  .exec(function (err, list_trees) {
+    if (err) { return next(err); }
+    //Successful, so render
+  	list_trees = JSON.stringify(list_trees);
+  	list_trees = JSON.parse(list_trees);
+  	res.render('home', {title: "Wake Forest Tree Map", tree_list: list_trees});
+  });
 }
 
 // Export the router, required in app.js

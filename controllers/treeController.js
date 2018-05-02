@@ -23,7 +23,6 @@ exports.tree_list = function(req, res, next) {
   .exec(function (err, list_trees) {
     if (err) { return next(err); }
     //Successful, so render
-    console.log(list_trees);
     res.render('tree_list', { title: 'Tree List', tree_list: list_trees });
   });
 };
@@ -51,7 +50,6 @@ exports.tree_detail = function(req, res, next) {
     },
     },
     function(err, results) {
-      console.log(results);
       if (err) {return next(err);}
       if (results.tree.length == 0) { // No results.
           var err = new Error('Tree not found');
@@ -61,7 +59,6 @@ exports.tree_detail = function(req, res, next) {
       if (results.tree[0].species.length == 0){
         results.tree[0].species.push({scientific_name: ""});
       }
-      console.log(results);
         // Successful, so render.
       res.render('treeDetail', { title: 'Tree Detail',
                                  id: results.tree[0]._id,
@@ -147,7 +144,7 @@ exports.tree_create_post =   [
             // There are errors. Render the form again with sanitized values/error messages.
             console.log(errors.array());
             res.render('addTree', { title: 'Add Tree', errors: errors.array()});
-        return;
+            return;
         }
         else {
             // Data from form is valid.
