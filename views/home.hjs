@@ -101,6 +101,16 @@
       <script type="text/javascript">
         var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
 
+        var greenIcon = L.icon({
+            iconUrl: './image/leaf-green.png',
+            shadowUrl: './image/leaf-shadow.png',
+
+            iconSize:     [13, 31], // size of the icon
+            shadowSize:   [17, 21], // size of the shadow
+            iconAnchor:   [7, 31], // point of the icon which will correspond to marker's location
+            shadowAnchor: [1, 21],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
             //map types
         var roadMutant = L.gridLayer.googleMutant({
           maxZoom: 24,
@@ -144,7 +154,7 @@
           var lon = parseFloat(a);
           var b = tree_list[i].latitude;
           var lat = parseFloat(b);
-          L.marker([lat,lon])
+          L.marker([lat,lon], {icon: greenIcon})
           .addTo(map)
           .addEventListener('click', L.bind(displayInfo, null, tree_list[i]._id))
           .bindPopup("My treeID is " + tree_list[i]._id  + ":" + tree_list[i].tree_label + ".");
