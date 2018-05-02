@@ -102,8 +102,8 @@
         var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
 
         var greenIcon = L.icon({
-            iconUrl: './image/leaf-green.png',
-            shadowUrl: './image/leaf-shadow.png',
+            iconUrl: '/image/leaf-green.png',
+            shadowUrl: '/image/leaf-shadow.png',
 
             iconSize:     [13, 31], // size of the icon
             shadowSize:   [17, 21], // size of the shadow
