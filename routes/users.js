@@ -1,5 +1,7 @@
 var express = require('express');
 var tree = require('../models/tree');
+var species = require('../models/species');
+var async = require('async');
 var router = express.Router();
 // Load the data model
 
@@ -32,15 +34,37 @@ function addTree(req, res, next) {
 
 
 function search_tree(req, res, next) {
-	tree.find({"common_name": new RegExp(req.body.search_key, "i")}, 'tree_label longitude latitude')
-  .exec(function (err, list_trees) {
-    if (err) { return next(err); }
-    //Successful, so render
+  var query = {};
+  var search_attribute = req.body.search_attribute;
+  query[search_attribute] = new RegExp(req.body.search_key, "i");
+
+  async.parallel({
+  tree: function(callback) {
+    // tree.findById(req.params.id)
+    tree.aggregate([
+      // simulating a natural join query
+      { $lookup:
+         {
+           from: 'species',
+           localField: 'common_name',
+           foreignField: 'common_name',
+           as: 'species'
+         }
+      }
+      ,
+      // simulating a where query
+      { $match: query }
+    ])
+    .exec(callback);
+  },
+  },
+  function(err, list_trees) {
+    if (err) {return next(err);}
+    // Successful, so render.
 		list_trees = JSON.stringify(list_trees);
 		list_trees = JSON.parse(list_trees);
-		res.render('home', {title: "Wake Forest Tree Map", tree_list: list_trees});
+		res.render('home', {title: "Wake Forest Tree Map", tree_list: list_trees.tree});
   });
-	// res.redirect('/');	// reload the page
 }
 
 function reset_home_page(req, res, next) {

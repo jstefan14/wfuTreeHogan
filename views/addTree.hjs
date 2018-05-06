@@ -34,65 +34,67 @@
 
     </div>
 
-    <h1>Add a Tree</h1>
+    <div class='add'>
+        <h1>Add a Tree</h1>
 
-    <form action="/data/tree/create" method="post">
-  		Short Name:<br>
-  		<input type="text" name="tree_label" value="">
-  		<br>
-  		Common Name:<br>
-  		<input type="text" name="common_name" value="">
-  		<br>
-      Longitude:<br>
-      <input type="text" name="longitude" value="">
-      <br>
-      Latitude:<br>
-      <input type="text" name="latitude" value="">
-      <br>
-      <!-- Date and Time:<br>
-      <input type="text" name="date_collected" value="">
-      <br> -->
-      Height:<br>
-      <input type="text" name="height" value="">
-      <br>
-      Diameter at Breast Height:<br>
-      <input type="text" name="DBH" value="">
-      <br>
+        <form action="/data/tree/create" method="post">
+      		Tree Label:<br>
+      		<input type="text" name="tree_label" value="">
+      		<br>
+      		Common Name:<br>
+      		<input type="text" name="common_name" value="">
+      		<br>
+          Longitude:<br>
+          <input type="text" name="longitude" value="">
+          <br>
+          Latitude:<br>
+          <input type="text" name="latitude" value="">
+          <br>
+          <!-- Date and Time:<br>
+          <input type="text" name="date_collected" value="">
+          <br> -->
+          Height:<br>
+          <input type="text" name="height" value="">
+          <br>
+          Diameter at Breast Height:<br>
+          <input type="text" name="DBH" value="">
+          <br>
 
-      Branch 1 (cm)<br>
-      <input type="text" name="Branch_1" value="">
-      <br>
-      Branch 2 (cm):<br>
-      <input type="text" name="Branch_2" value="">
-      <br>
-      Branch 3 (cm):<br>
-      <input type="text" name="Branch_3" value="">
-      <br>
-      Branch 4 (cm):<br>
-      <input type="text" name="Branch_4" value="">
-      <br>
-      First:<br>
-      <input type="text" name="first" value="">
-      <br>
-      Collector Name:<br>
-      <input type="text" name="collector" value="">
-      <br>
-      Datum:<br>
-      <input type="text" name="datum" value="">
-      <br>
-      <br>
-   	 	<input type="submit" dvalue="Submit">
-  	</form>
+          Branch 1 (cm)<br>
+          <input type="text" name="Branch_1" value="">
+          <br>
+          Branch 2 (cm):<br>
+          <input type="text" name="Branch_2" value="">
+          <br>
+          Branch 3 (cm):<br>
+          <input type="text" name="Branch_3" value="">
+          <br>
+          Branch 4 (cm):<br>
+          <input type="text" name="Branch_4" value="">
+          <br>
+          First:<br>
+          <input type="text" name="first" value="">
+          <br>
+          Collector Name:<br>
+          <input type="text" name="collector" value="">
+          <br>
+          Datum:<br>
+          <input type="text" name="datum" value="">
+          <br>
+          <br>
+       	 	<input type="submit" dvalue="Submit">
+      	</form>
 
-  	<div>
-      {{#errors}}   <!-- Iterate over the array in users variable -->
-       <li>{{msg}} <!-- fields in the array entry -->
-      {{/errors}}	<!-- end of loop -->
-  	</div>
+      	<div>
+          {{#errors}}   <!-- Iterate over the array in users variable -->
+           <li>{{msg}} <!-- fields in the array entry -->
+          {{/errors}}	<!-- end of loop -->
+      	</div>
 
-    <div>
-      <a href="/">Back to main page</a>
+        <div>
+          <a href="/">Back to main page</a>
+        </div>
+        <p></p>
     </div>
-    <p></p>
   </body>
 </html>

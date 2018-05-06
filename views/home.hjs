@@ -22,7 +22,6 @@
 
   </head>
 
-
   <body>
 
     <div id="wrapper">
@@ -47,8 +46,15 @@
         <div id = "search" class="search">
           <form action="/users/search" method="post">
             <input name="search_key" type="text" placeholder="Tree Name..." style="margin-top: 4px; float: right;">
+            <select name="search_attribute" style="margin-top: 4px; float: right;">
+              <option value="species.common_name">Common Name</option>
+              <option value="species.scientific_name">Scientific Name</option>
+              <option value="species.family">Family</option>
+              <option value="species.order">Order</option>
+              <option value="species.type">Type</option>
+            </select>
             <br>
-            <input type="submit" value="Search" style="margin-top: 4px; float: right;">
+            <input type="submit" value="Search" style="margin-top: 7px; float: right;">
           </form>
         </div>
       </div>
@@ -72,8 +78,23 @@
           </div>
 
           <button onclick="generalInfo('generalBar')" class="left-align blue">Website</button>
-          <div id="generalBar" class="hide">
-            <p class="panel">Other info to be shown here </p>
+          <div id="generalBar" class="show">
+            <p class="panel">
+              <b>Developers:</b><br>
+              Computer Science Department:<br>
+              &nbsp Shucheng (Alex) Liu<br>
+              &nbsp Zhuo (Rocky) Cheng<br>
+              &nbsp Jack Stefen<br>
+              &nbsp Linda Sui<br>
+              &nbsp Yuqing (Zoe) Wang<br>
+              <br>
+              &nbsp Dr. Paul Pauca (Instructor)<br>
+              <br>
+              Biology Department:<br>
+              &nbsp Jim Mussetter<br>
+              &nbsp William Farfan<br>
+              &nbsp Dr. Miles Silman<br>
+            </p>
           </div>
           <script>
             function treeInfo(id) {
@@ -89,10 +110,10 @@
             function generalInfo(id) {
                 var x = document.getElementById(id);
                 if (x.className.indexOf("show") == -1) {
-                    x.className += " show";
+                    x.className = x.className.replace("hide", "show");
                 }
                 else {
-                    x.className = x.className.replace(" show", "");
+                    x.className = x.className.replace("show", "hide");
                 }
             }
           </script>

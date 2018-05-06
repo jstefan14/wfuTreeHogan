@@ -42,9 +42,16 @@
         </div>
         <div id = "search" class="search">
           <form action="/users/search" method="post">
-            <input type="text" placeholder="Tree Name..." style="margin-top: 4px; float: right;">
+            <input name="search_key" type="text" placeholder="Tree Name..." style="margin-top: 4px; float: right;">
+            <select name="search_attribute" style="margin-top: 4px; float: right;">
+              <option value="species.common_name">Common Name</option>
+              <option value="species.scientific_name">Scientific Name</option>
+              <option value="species.family">Family</option>
+              <option value="species.order">Order</option>
+              <option value="species.type">Type</option>
+            </select>
             <br>
-            <input type="submit" value="Search" style="margin-top: 4px; float: right;">
+            <input type="submit" value="Search" style="margin-top: 7px; float: right;">
           </form>
         </div>
       </div>
@@ -67,17 +74,17 @@
 					<div class="wrapper" style="border: 5px solid white; background: white;">
 					<div class = "round">
 						<h3>Recent Update</h3>
-						<p>Rocky uploaded a new photo on April 22</p>
+						<!-- <p>Rocky uploaded a new photo on April 22</p>
 						<div class="progress">
 					    	<div class="progress-bar" style="width: 75%;"></div>
 					 	</div>
-						<h4>10% complete</h4>
+						<h4>10% complete</h4> -->
 					</div>
 				</div>
 			<div class="wrapper" style="border: 5px solid white; background: white;">
 					<div class = "round">
 						<h3>Edit History</h3>
-						<h4>Rocky</h4>
+						<!-- <h4>Rocky</h4>
 						<p class="text-muted">Feb. 15, 2016 (2&nbsp;years, 2&nbsp;months ago)</p>
 						<ul>
 							<li>add a photo</li>
@@ -89,15 +96,7 @@
 							<li>set address street to 117 Lower College Road</li>
 							<li>made the tree editable</li>
 							<li>set the location</li>
-						</ul>
-					</div>
-				</div>
-			<div class="wrapper" style="border: 5px solid white; background: white;">
-					<div class="round">
-  					<h3>Nearby Trees</h3>
-						<ul>
-							<li><a href="/asheville/features/14825/">14,825</a></li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>
@@ -131,12 +130,28 @@
 						<td>{{scientific_name}}</td>
 					</tr>
 					<tr>
+						<td>Family</td>
+						<td>{{family}}</td>
+					</tr>
+					<tr>
+						<td>Order</td>
+						<td>{{order}}</td>
+					</tr>
+					<tr>
+						<td>Type</td>
+						<td>{{type}}</td>
+					</tr>
+					<tr>
 						<td>Trunk Diameter</td>
 						<td>{{DBH}}</td>
 					</tr>
 					<tr>
 						<td>Tree Height</td>
 						<td>{{height}}</td>
+					</tr>
+					<tr>
+						<td>Date Collected</td>
+						<td>{{date_collected}}</td>
 					</tr>
 				</table>
 			</div>

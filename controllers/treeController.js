@@ -64,14 +64,17 @@ exports.tree_detail = function(req, res, next) {
                                  id: results.tree[0]._id,
                                  tree_label: results.tree[0].tree_label,
                                  scientific_name: results.tree[0].species[0].scientific_name,
+                                 family: results.tree[0].species[0].family,
+                                 order: results.tree[0].species[0].order,
+                                 type: results.tree[0].species[0].type,
                                  common_name: results.tree[0].common_name,
                                  DBH: results.tree[0].DBH,
-                                 height: results.tree[0].height} );
+                                 height: results.tree[0].height,
+                                 date_collected: results.tree[0].date_collected} );
     });
 };
 
 exports.tree_info = function(req, res, next){
-  console.log(req.params.id);
   async.parallel({
     tree: function(callback) {
       tree.findById(req.params.id)
