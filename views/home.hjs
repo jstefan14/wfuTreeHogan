@@ -2,6 +2,10 @@
 <html>
   <head>
   	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc" async defer></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <meta name="google-signin-client_id" content="638202444179-h8pf6ghlmsh4bb9bi6p39o48a3li3jat.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -32,6 +36,10 @@
           <ul>
             <li> <a href="/">Home</a> </li>
             <li> <a href="/data/tree/create">Add a Tree</a> </li>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="data">
+              <button onclick="signOut()" class="btn btn-danger">Signout</button>
+            </div>
           </ul>
         </div>
       </div>
@@ -120,6 +128,20 @@
         </div><!--side bar-->
       </div>
       <script type="text/javascript">
+        function onSignIn(googleUser) {
+          var profile = googleUser.getBasicProfile();
+          $(".g-signin2").css("display", "none");
+          $(".data").css("display", "block");
+          //$("#pic").attr('src', profile.getImageUrl());
+        }
+        function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function() {
+            alert("You are logged out");
+            $(".g-signin2").css("display", "block");
+            $(".data").css("display", "none");
+          })
+        }
         var map = new L.Map('map', {center: new L.LatLng(36.1335, -80.2790), zoom: 17});
 
         var greenIcon = L.icon({
