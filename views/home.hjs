@@ -36,9 +36,9 @@
           <ul>
             <li> <a href="/">Home</a> </li>
             <li> <a href="/data/tree/create">Add a Tree</a> </li>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn" style="float: right"></div>
             <div class="data">
-              <button onclick="signOut()" class="btn btn-danger">Signout</button>
+              <button onclick="signOut()" class="btn btn-danger" style="float: right">Signout</button>
             </div>
           </ul>
         </div>
@@ -132,7 +132,7 @@
           var profile = googleUser.getBasicProfile();
           $(".g-signin2").css("display", "none");
           $(".data").css("display", "block");
-          //$("#pic").attr('src', profile.getImageUrl());
+          // $("#pic").attr('src', profile.getImageUrl());
         }
         function signOut() {
           var auth2 = gapi.auth2.getAuthInstance();

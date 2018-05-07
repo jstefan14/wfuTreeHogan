@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<!-- {{ title }} tells HJS to use variable title when
+  		rendering this page -->
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- <div id="map" style="width:500px; height:500px" ></div> -->
+      <!-- top nav bar -->
+      <div id="navigation bar" class="navbar">
+        <div id="navigation bar buttons">
+          <ul>
+            <li> <a href="/">Home</a> </li>
+            <li> <a href="/users/addTree">Add a Tree</a> </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- logo and search -->
+      <div id="logo and search" class="black_back">
+        <div class="logo" id="logo">
+          <a href="/">
+            <img id="site-logo" src="/image/WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
+          </a >
+        </div>
+      </div>
+
+      <!-- sub header -->
+      <div id="sub header"></div>
+      <div id="export-panel" class="modal fade"></div>
+
+    </div>
+
+    <div class='add'>
+        <h1>Editing Tree: {{tree_label}}</h1>
+
+        <form action="/data/tree/{{id}}/update" method="post">
+      		Common Name:<br>
+      		<input type="text" name="common_name" value="{{common_name}}">
+      		<br>
+          Longitude:<br>
+          <input type="text" name="longitude" value="{{longitude}}">
+          <br>
+          Latitude:<br>
+          <input type="text" name="latitude" value="{{latitude}}">
+          <br>
+          Height:<br>
+          <input type="text" name="height" value="{{height}}">
+          <br>
+          Diameter at Breast Height:<br>
+          <input type="text" name="DBH" value="{{DBH}}">
+          <br>
+
+          Branch 1 (cm)<br>
+          <input type="text" name="Branch_1" value="{{b_1}}">
+          <br>
+          Branch 2 (cm):<br>
+          <input type="text" name="Branch_2" value="{{b_2}}">
+          <br>
+          Branch 3 (cm):<br>
+          <input type="text" name="Branch_3" value="{{b_3}}">
+          <br>
+          Branch 4 (cm):<br>
+          <input type="text" name="Branch_4" value="{{b_4}}">
+          <br>
+          First:<br>
+          <input type="text" name="first" value="{{first}}">
+          <br>
+          Datum:<br>
+          <input type="text" name="datum" value="{{datum}}">
+          <br>
+          <br>
+       	 	<input type="submit" dvalue="Submit">
+      	</form>
+
+      	<div>
+          {{#errors}}   <!-- Iterate over the array in users variable -->
+           <li>{{msg}} <!-- fields in the array entry -->
+          {{/errors}}	<!-- end of loop -->
+      	</div>
+
+        <div>
+          <a href="/">Back to main page</a>
+        </div>
+        <p></p>
+    </div>
+  </body>
+</html>

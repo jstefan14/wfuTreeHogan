@@ -106,7 +106,7 @@
 		  	<div class="block" style="border:15px solid white">
 			    <h1>{{common_name}}</h1>
 			    <p>some location</p>
-          <form class="button button2" action="" method="">
+          <form class="button button2" action="/data/tree/{{id}}/update" method="get">
 				     <button id="editButton" class="button button2" type="submit">Edit</button>
           </form>
           <form class="button button3" action="/data/tree/{{id}}/delete" method="post">
@@ -166,7 +166,6 @@
 		</div>
     </div>
 
-  <footer></footer>
 </div>
 
  </body>

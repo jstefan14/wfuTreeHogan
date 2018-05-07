@@ -191,10 +191,88 @@ exports.tree_delete_post = function(req, res) {
 
 // Display tree update form on GET.
 exports.tree_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: tree update GET');
+  async.parallel({
+    tree: function(callback) {
+      tree.findById(req.params.id)
+          .exec(callback);
+    },
+    },
+    function(err, results) {
+      if (err) {return next(err);}
+      if (results.tree==null) { // No results.
+          var err = new Error('Tree not found');
+          err.status = 404;
+          return next(err);
+      }
+      // Successful, so render.
+      res.render('editTree', { title: 'Tree Edit',
+                               id: results.tree._id,
+                               tree_label: results.tree.tree_label,
+                               longitude: results.tree.longitude,
+                               latitude: results.tree.latitude,
+                               common_name: results.tree.common_name,
+                               DBH: results.tree.DBH,
+                               height: results.tree.height,
+                               b_1: results.tree["Branch 1 (cm)"],
+                               b_2: results.tree["Branch 2 (cm)"],
+                               b_3: results.tree["Branch 3 (cm)"],
+                               b_4: results.tree["Branch 4 (cm)"],
+                               first: results.tree.first,
+                               datum: results.tree.datum
+                             });
+    });
 };
 
 // Handle tree update on POST.
-exports.tree_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: tree update POST');
-};
+exports.tree_update_post = [
+    // Validate that the name, label, longitude, latitude and collector field is not empty.
+    body('common_name', 'Tree name required').isLength({ min: 1 }).trim(),
+    body('longitude', 'Longitude required').isLength({ min: 1 }).trim(),
+    body('latitude', 'Latitude required').isLength({ min: 1 }).trim(),
+
+    // Sanitize (trim and escape) the name field.
+    sanitizeBody('common_name').trim().escape(),
+    sanitizeBody('longitude').trim().escape(),
+    sanitizeBody('latitude').trim().escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+
+        // Create a genre object with escaped and trimmed data.
+        var new_tree = new tree({
+              longitude: req.body.longitude,
+              latitude: req.body.latitude,
+              common_name: req.body.common_name,
+              height: req.body.height,
+              DBH: req.body.DBH,
+              "Branch 1 (cm)": req.body.Branch_1,
+              "Branch 2 (cm)": req.body.Branch_2,
+              "Branch 3 (cm)": req.body.Branch_3,
+              "Branch 4 (cm)": req.body.Branch_4,
+              first: req.body.first,
+              datum: req.body.datum,
+              _id:req.params.id
+            }
+        );
+
+
+        if (!errors.isEmpty()) {
+            // There are errors. Render the form again with sanitized values/error messages.
+            console.log(errors.array());
+            res.render('editTree', { title: 'Edit Tree', errors: errors.array()});
+            return;
+        }
+        else {
+            // Data from form is valid.
+            // Check if Genre with same name already exists.
+            tree.findByIdAndUpdate(req.params.id, new_tree, {}, function (err,thetree) {
+                if (err) { return next(err); }
+                   // Successful - redirect to book detail page.
+                   res.redirect(thetree.url);
+                });
+        }
+    }
+];
