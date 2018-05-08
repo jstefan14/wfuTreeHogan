@@ -3,7 +3,9 @@
 <head>
   	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc" async defer></script>
 
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="136058100246-enfq4sjemvsebq3iouka1dtbk6b6g4k5.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
   	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
@@ -30,6 +32,26 @@
           <ul>
             <li> <a href="/">Home</a> </li>
             <li> <a href="/users/addTree">Add a Tree</a> </li>
+            <div class="g-signin2" data-onsuccess="onSignIn" style="float: right"></div>
+            <div class="g-signout" style="display: none">
+              <button onclick="signOut()" class="btn btn-danger" style="float: right">Signout</button>
+            </div>
+            <script type="text/javascript">
+              function onSignIn(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                $(".g-signin2").css("display", "none");
+                $(".g-signout").css("display", "block");
+                // $("#pic").attr('src', profile.getImageUrl());
+              }
+              function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function() {
+                  alert("You are logged out");
+                  $(".g-signin2").css("display", "block");
+                  $(".g-signout").css("display", "none");
+                })
+              }
+            </script>
           </ul>
         </div>
       </div>

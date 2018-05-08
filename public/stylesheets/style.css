@@ -122,7 +122,7 @@ body {
   height: 150px;
 }
 div.container {
-    width: 100%;
+    width: 100vw;
     border: 1px solid gray;
 }
 
@@ -258,4 +258,270 @@ div.add {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 700px) {
+  body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin: 0
+  }
+  .round {
+    border: 1px solid #ebeced;
+    background: #f1f2f2;
+    border-radius: 8px;
+  }
+  #map {
+    width: 100vw;
+    height:65vh;
+  }
+
+  .navbar a {
+    color: #00B7FF;
+  }
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  .navbar li {
+    float: left;
+  }
+  .navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .navbar li a:hover {
+    background-color: #111;
+  }
+
+  .black_back{
+    background-color: #000;
+  }
+  .logo{
+    display: inline-block;
+  }
+  .search{
+    float: right;
+    margin-right: 32px;
+    display: inline-block;
+  }
+  .main{
+    float: left;
+  }
+  .sidebar{
+    position:relative;
+    height:auto;
+    width: 100vw;
+    /* right: 0; */
+    top: 5px;
+    background-color: #eee;
+    color: #444;
+    border: solid;
+    text-align: left;
+    outline: none;
+    transition: 0.5s;
+  }
+  .sidebar h1 {
+    padding: 3px 8px 0px 32px;
+    font-size: 30px;
+  }
+  .sidebar p {
+    padding: 3px 8px 6px 32px;
+    font-size: 15px;
+  }
+  .sidebar button {
+    border: 1px solid green;
+    border-radius: 5px;
+    width: 100%;
+    display:inline-block;
+    padding:8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align:middle;
+    overflow:hidden;
+    text-decoration:none;
+    color:inherit;
+    background-color:inherit;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .active, .sidebar:hover{
+    background-color: : #ccc;
+  }
+  .panel{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid green;
+    border-radius: 5px;
+  }
+  .green{
+    color: white!important;
+    background-color: green!important;
+  }
+  .blue{
+    color: white!important;
+    background-color: blue!important;
+  }
+
+  .left-align{text-align: left!important}
+  .right-align{text-align: right!important}
+  .hide{display:none!important}
+  .show{display:block!important}
+  .show-inline-block{display:inline-block!important}
+
+  #rcorners1{
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+  }
+  div.container {
+      width: 100vw;
+      border: 1px solid gray;
+  }
+
+  header, footer {
+      padding: 1em;
+      color: white;
+      background-color: black;
+      clear: left;
+      text-align: center;
+  }
+
+  nav {
+      float: left;
+      max-width: 160px;
+      margin: 0;
+      padding: 1em;
+  }
+  frame {
+    position: absolute;
+  top: 10%;
+  bottom: 20%;
+  left: 15%;
+  right: 15%;
+  }
+
+  nav ul {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  nav ul a {
+      text-decoration: none;
+  }
+
+  article {
+      margin-left: 170px;
+      border-left: 1px solid gray;
+      padding: 1em;
+      overflow: hidden;
+  }
+  * {
+      box-sizing: border-box;
+  }
+  /* Create three equal columns that floats next to each other */
+  /* ...and remember to adjust it to mobile device*/
+  .column1 {
+      float: none;
+      width: 85vw;
+      padding: 10px;
+  }
+  .column2 {
+      float: none;
+      width: 85vw;
+      padding: 10px;
+  }
+  .column3 {
+      float: left;
+      width: 85vw;
+      padding: 10px;
+  }
+  .mywrap {
+    padding:35px;
+  }
+  /* Clear floats after the columns */
+  .row:after {
+      content: "";
+      display: table;
+      clear: both;
+  }
+  .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 5px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+  }
+  .button4 {
+      padding: 10px 18px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      float: right;
+
+  }
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+  td {
+      border-top: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  .button2 {background-color: #008CBA;} /* Blue */
+  .button3 {background-color: #f44336;} /* Red */
+  .button4 {background-color: #D8BFD8; color: black;}
+
+
+  .add input[type=text], .add select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .add input[type=submit] {
+      width: 80%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+
+  .add input[type=submit]:hover {
+      background-color: #45a049;
+  }
+
+  div.add {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+  }
 }
