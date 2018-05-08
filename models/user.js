@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema(
   {
-    _id: false, 
     user_id: {type: String, key: true, required: true},
     first_name: {type: String, required: true},
     last_name: {type: String, required: true},

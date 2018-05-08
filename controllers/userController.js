@@ -1,4 +1,5 @@
 var user = require('../models/user');
+var mongoose = require('mongoose');
 
 // Display list of all users.
 exports.user_list = function(req, res) {
@@ -14,13 +15,12 @@ exports.user_detail = function(req, res) {
 exports.user_create_get = function(req, res) {
   // let test = new user(
   //   {
-  //     user_id: "0000",
-  //     first_name: "test",
-  //     last_name: "test",
-  //     user_group: "test"
+  //     user_id: "lius214@wfu.edu",
+  //     first_name: "Alex",
+  //     last_name: "Liu",
+  //     user_group: mongoose.Types.ObjectId("5af1f72419494510a4352250")
   //   }
   // );
-  // console.log(test);
   // test.save();
 };
 
