@@ -1,5 +1,6 @@
 var tree = require('../models/tree');
 var species = require('../models/species');
+var user = require('../models/user');
 var mongoose = require('mongoose');
 var async = require('async');
 const { body,validationResult } = require('express-validator/check');
@@ -178,9 +179,20 @@ exports.tree_delete_get = function(req, res) {
     res.send('NOT IMPLEMENTED: tree delete GET');
 };
 
-// Handle tree delete on POST.
-exports.tree_delete_post = function(req, res) {
-  if(req.body.email != "yeah"){
+// Handle tree delete on POST..
+exports.tree_delete_post = function(req, res, next) {
+  // var query = {};
+  // query["user_id"] = req.body.email;
+  // console.log(query);
+  // user.find({})
+  // .populate('user_group')
+  // .exec(function (err, result) {
+  //   if (err) { return next(err); }
+  //   //Successful, so render
+  //   console.log(result);
+  // });
+
+  if(req.body.email != "lius214@wfu.edu"){
     console.log(req.body.email);
     res.render("noAccess");
   }

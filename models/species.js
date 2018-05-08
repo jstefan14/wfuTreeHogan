@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 
 var SpeciesSchema = new Schema(
   {
-    _id: false,
     common_name: {type: String, key: true, required: true},
     scientific_name: {type: String, required: true},
     family: {type: String},

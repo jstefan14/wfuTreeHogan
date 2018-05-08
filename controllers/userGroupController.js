@@ -14,8 +14,8 @@ exports.user_group_detail = function(req, res) {
 exports.user_group_create_get = function(req, res) {
     // let test = new user_group(
     //   {
-    //     user_group: "test",
-    //     privilege: ["add", "delete"]
+    //     user_group: "admin",
+    //     privilege: ["add", "delete", "edit"]
     //   }
     // );
     // console.log(test);
