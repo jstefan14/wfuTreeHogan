@@ -1,16 +1,18 @@
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
 
-        reader.onload = function (e) {
-            $('#blah')
-                .attr('src', e.target.result)
-                .width(150)
-                .height(200);
-        };
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
 
-        reader.readAsDataURL(input.files[0]);
-    }
+          reader.onload = function (e) {
+              $('#blah')
+                  .attr('src', e.target.result)
+                  .width(250)
+                  .height(230);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
     var map = new L.Map('map', {center: new L.LatLng(36.1352, -80.2763), zoom: 16});
 
             //map types
@@ -43,6 +45,5 @@ function readURL(input) {
         }
 
         function displayInfo(m){
-          
+
         }
-}

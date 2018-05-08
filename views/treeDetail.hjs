@@ -72,8 +72,9 @@
       <div class="row">
 		  <div class="column1" style="background-color: white;">
 		  	<div class="block" style="border:15px solid white;">
-			    <img src="/image/tree.png" alt="Tree :)" width="300" height="250">
-			    <input type='file' id="files" onchange="readURL(this);" />
+          <img id="blah" src="/image/tree.png" alt="your image" width="250" height="230"/>
+			    <!-- <img src="/image/tree.png" alt="Tree :)" width="300" height="250"> -->
+			    <input type='file' onchange="readURL(this);" />
 			</div>
 		  	<div class="block" style="border:15px solid white;">
 					<!-- <div class="progress">
