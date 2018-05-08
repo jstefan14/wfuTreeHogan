@@ -163,10 +163,6 @@
           maxZoom: 24,
           type:'roadmap'
         }).addTo(map);
-        var satMutant = L.gridLayer.googleMutant({
-          maxZoom: 24,
-          type:'satellite'
-        });
         var hybridMutant = L.gridLayer.googleMutant({
           maxZoom: 24,
           type:'hybrid'
@@ -174,7 +170,6 @@
 
         L.control.layers({
           Roadmap: roadMutant,
-          Aerial: satMutant,
           Hybrid: hybridMutant,
         }, {}, {
           collapsed: false
