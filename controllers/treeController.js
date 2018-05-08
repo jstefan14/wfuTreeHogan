@@ -180,13 +180,19 @@ exports.tree_delete_get = function(req, res) {
 
 // Handle tree delete on POST.
 exports.tree_delete_post = function(req, res) {
-  tree.findByIdAndRemove(req.params.id, function (err, deletedTree) {
-    if (err) {
-      res.send('Error Deleting Data');
-    } else {
-    	res.redirect('/');
-    }
-  });
+  if(req.body.email != "yeah"){
+    console.log(req.body.email);
+    res.render("noAccess");
+  }
+  else{
+    tree.findByIdAndRemove(req.params.id, function (err, deletedTree) {
+      if (err) {
+        res.send('Error Deleting Data');
+      } else {
+      	res.redirect('/');
+      }
+    });
+  }
 };
 
 // Display tree update form on GET.

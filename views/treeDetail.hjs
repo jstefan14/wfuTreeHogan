@@ -36,22 +36,9 @@
             <div class="g-signout" style="display: none">
               <button onclick="signOut()" class="btn btn-danger" style="float: right">Signout</button>
             </div>
-            <script type="text/javascript">
-              function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-                $(".g-signin2").css("display", "none");
-                $(".g-signout").css("display", "block");
-                // $("#pic").attr('src', profile.getImageUrl());
-              }
-              function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function() {
-                  alert("You are logged out");
-                  $(".g-signin2").css("display", "block");
-                  $(".g-signout").css("display", "none");
-                })
-              }
-            </script>
+            <div id='profile' style="float: right; display: none">
+              <img id="pic" height=20px width=20px>
+            </div>
           </ul>
         </div>
       </div>
@@ -132,11 +119,9 @@
 				     <button id="editButton" class="button button2" type="submit">Edit</button>
           </form>
           <form class="button button3" action="/data/tree/{{id}}/delete" method="post">
-				     <button id="deleteButton" class="button button3" type="submit">Delete</button>
+            <input id="email" type="hidden" name="email" value="">
+            <button id="deleteButton" class="button button3" type="submit">Delete</button>
           </form>
-          <!-- <script>
-            document.getElementById("deleteButton").addEventListener ("click", function(){location.href = "/data/tree/"+m+"/delete";});
-          </script> -->
 				<h2>Tree Information</h2>
 				<table>
 				  <tr>
@@ -189,6 +174,26 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    $(".g-signin2").css("display", "none");
+    $(".g-signout").css("display", "block");
+    $("#profile").css('display', 'block');
+    $("#pic").attr('src', profile.getImageUrl());
+    document.getElementById('email').value = profile.getEmail();
+  }
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function() {
+      alert("You are logged out");
+      $(".g-signin2").css("display", "block");
+      $(".g-signout").css("display", "none");
+      $("#profile").css('display', 'none');
+    })
+  }
+</script>
 
  </body>
 </html>
