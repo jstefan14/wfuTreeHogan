@@ -96,10 +96,17 @@ exports.tree_info = function(req, res, next){
 
 // Display tree create form on GET.
 exports.tree_create_get = function(req, res) {
-  res.render(
-    'addTree',
-    { title: 'Add Tree' }
-  );
+
+  if(req.body.email != "lius214@wfu.edu"){
+    console.log(req.body.email);
+    res.render("noAccess");
+  }
+  else{
+    res.render(
+      'addTree',
+      { title: 'Add Tree' }
+    );
+  }
 };
 
 // Handle tree create on POST.
@@ -209,36 +216,42 @@ exports.tree_delete_post = function(req, res, next) {
 
 // Display tree update form on GET.
 exports.tree_update_get = function(req, res) {
-  async.parallel({
-    tree: function(callback) {
-      tree.findById(req.params.id)
-          .exec(callback);
-    },
-    },
-    function(err, results) {
-      if (err) {return next(err);}
-      if (results.tree==null) { // No results.
-          var err = new Error('Tree not found');
-          err.status = 404;
-          return next(err);
-      }
-      // Successful, so render.
-      res.render('editTree', { title: 'Tree Edit',
-                               id: results.tree._id,
-                               tree_label: results.tree.tree_label,
-                               longitude: results.tree.longitude,
-                               latitude: results.tree.latitude,
-                               common_name: results.tree.common_name,
-                               DBH: results.tree.DBH,
-                               height: results.tree.height,
-                               b_1: results.tree["Branch 1 (cm)"],
-                               b_2: results.tree["Branch 2 (cm)"],
-                               b_3: results.tree["Branch 3 (cm)"],
-                               b_4: results.tree["Branch 4 (cm)"],
-                               first: results.tree.first,
-                               datum: results.tree.datum
-                             });
-    });
+  if(req.body.email != "lius214@wfu.edu"){
+    console.log(req.body.email);
+    res.render("noAccess");
+  }
+  else{
+    async.parallel({
+      tree: function(callback) {
+        tree.findById(req.params.id)
+            .exec(callback);
+      },
+      },
+      function(err, results) {
+        if (err) {return next(err);}
+        if (results.tree==null) { // No results.
+            var err = new Error('Tree not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render.
+        res.render('editTree', { title: 'Tree Edit',
+                                 id: results.tree._id,
+                                 tree_label: results.tree.tree_label,
+                                 longitude: results.tree.longitude,
+                                 latitude: results.tree.latitude,
+                                 common_name: results.tree.common_name,
+                                 DBH: results.tree.DBH,
+                                 height: results.tree.height,
+                                 b_1: results.tree["Branch 1 (cm)"],
+                                 b_2: results.tree["Branch 2 (cm)"],
+                                 b_3: results.tree["Branch 3 (cm)"],
+                                 b_4: results.tree["Branch 4 (cm)"],
+                                 first: results.tree.first,
+                                 datum: results.tree.datum
+                               });
+      });
+    }
 };
 
 // Handle tree update on POST.
