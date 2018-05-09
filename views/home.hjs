@@ -46,7 +46,8 @@
                 $(".g-signout").css("display", "block");
                 $("#pic").attr('src', profile.getImageUrl());
                 $("#profile").css('display', 'block');
-                console.log(profile.getEmail());
+                document.getElementById('email').value = profile.getEmail();
+                console.log(document.getElementById('email').value);
               }
               function signOut() {
                 var auth2 = gapi.auth2.getAuthInstance();

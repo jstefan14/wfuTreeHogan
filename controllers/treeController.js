@@ -96,17 +96,10 @@ exports.tree_info = function(req, res, next){
 
 // Display tree create form on GET.
 exports.tree_create_get = function(req, res) {
-
-  if(req.body.email != "lius214@wfu.edu"){
-    console.log(req.body.email);
-    res.render("noAccess");
-  }
-  else{
     res.render(
       'addTree',
       { title: 'Add Tree' }
     );
-  }
 };
 
 // Handle tree create on POST.
@@ -128,55 +121,61 @@ exports.tree_create_post =   [
     // Process request after validation and sanitization.
     (req, res, next) => {
 
-        // Extract the validation errors from a request.
-        const errors = validationResult(req);
-
-        // Create a genre object with escaped and trimmed data.
-        var new_tree = new tree(
-          {   tree_label: req.body.tree_label,
-              longitude: req.body.longitude,
-              latitude: req.body.latitude,
-              common_name: req.body.common_name,
-              // date_collected: req.body.date_collected,
-              height: req.body.height,
-              DBH: req.body.DBH,
-              "Branch 1 (cm)": req.body.Branch_1,
-              "Branch 2 (cm)": req.body.Branch_2,
-              "Branch 3 (cm)": req.body.Branch_3,
-              "Branch 4 (cm)": req.body.Branch_4,
-              first: req.body.first,
-              collector: req.body.collector,
-              datum: req.body.datum
-            }
-        );
-
-
-        if (!errors.isEmpty()) {
-            // There are errors. Render the form again with sanitized values/error messages.
-            console.log(errors.array());
-            res.render('addTree', { title: 'Add Tree', errors: errors.array()});
-            return;
+        console.log(req.body.email);
+        if(req.body.email != "lius214@wfu.edu"){
+          res.render("noAccess");
         }
-        else {
-            // Data from form is valid.
-            // Check if Genre with same name already exists.
-            tree.findOne({ 'tree_label': req.body.tree_label })
-            .exec( function(err, found_tree) {
-                 if (err) { return next(err); }
+        else{
+          // Extract the validation errors from a request.
+          const errors = validationResult(req);
 
-                 if (found_tree) {
-                     // Genre exists, redirect to its detail page.
-                     res.redirect(found_tree.url);
-                 }
-                 else {
+          // Create a genre object with escaped and trimmed data.
+          var new_tree = new tree(
+            {   tree_label: req.body.tree_label,
+                longitude: req.body.longitude,
+                latitude: req.body.latitude,
+                common_name: req.body.common_name,
+                // date_collected: req.body.date_collected,
+                height: req.body.height,
+                DBH: req.body.DBH,
+                "Branch 1 (cm)": req.body.Branch_1,
+                "Branch 2 (cm)": req.body.Branch_2,
+                "Branch 3 (cm)": req.body.Branch_3,
+                "Branch 4 (cm)": req.body.Branch_4,
+                first: req.body.first,
+                collector: req.body.collector,
+                datum: req.body.datum
+              }
+          );
 
-                     new_tree.save(function (err) {
-                       if (err) { return next(err); }
-                       // Genre saved. Redirect to genre detail page.
-                       res.redirect(new_tree.url);
-                     });
-                 }
-             });
+
+          if (!errors.isEmpty()) {
+              // There are errors. Render the form again with sanitized values/error messages.
+              console.log(errors.array());
+              res.render('addTree', { title: 'Add Tree', errors: errors.array()});
+              return;
+          }
+          else {
+              // Data from form is valid.
+              // Check if Genre with same name already exists.
+              tree.findOne({ 'tree_label': req.body.tree_label })
+              .exec( function(err, found_tree) {
+                   if (err) { return next(err); }
+
+                   if (found_tree) {
+                       // Genre exists, redirect to its detail page.
+                       res.redirect(found_tree.url);
+                   }
+                   else {
+
+                       new_tree.save(function (err) {
+                         if (err) { return next(err); }
+                         // Genre saved. Redirect to genre detail page.
+                         res.redirect(new_tree.url);
+                       });
+                   }
+               });
+          }
         }
     }
 ];
@@ -216,11 +215,6 @@ exports.tree_delete_post = function(req, res, next) {
 
 // Display tree update form on GET.
 exports.tree_update_get = function(req, res) {
-  if(req.body.email != "lius214@wfu.edu"){
-    console.log(req.body.email);
-    res.render("noAccess");
-  }
-  else{
     async.parallel({
       tree: function(callback) {
         tree.findById(req.params.id)
@@ -251,7 +245,6 @@ exports.tree_update_get = function(req, res) {
                                  datum: results.tree.datum
                                });
       });
-    }
 };
 
 // Handle tree update on POST.
@@ -269,41 +262,48 @@ exports.tree_update_post = [
     // Process request after validation and sanitization.
     (req, res, next) => {
 
-        // Extract the validation errors from a request.
-        const errors = validationResult(req);
-
-        // Create a genre object with escaped and trimmed data.
-        var new_tree = new tree({
-              longitude: req.body.longitude,
-              latitude: req.body.latitude,
-              common_name: req.body.common_name,
-              height: req.body.height,
-              DBH: req.body.DBH,
-              "Branch 1 (cm)": req.body.Branch_1,
-              "Branch 2 (cm)": req.body.Branch_2,
-              "Branch 3 (cm)": req.body.Branch_3,
-              "Branch 4 (cm)": req.body.Branch_4,
-              first: req.body.first,
-              datum: req.body.datum,
-              _id:req.params.id
-            }
-        );
-
-
-        if (!errors.isEmpty()) {
-            // There are errors. Render the form again with sanitized values/error messages.
-            console.log(errors.array());
-            res.render('editTree', { title: 'Edit Tree', errors: errors.array()});
-            return;
+        console.log(req.body.email);
+        if(req.body.email != "lius214@wfu.edu"){
+          res.render("noAccess");
         }
-        else {
-            // Data from form is valid.
-            // Check if Genre with same name already exists.
-            tree.findByIdAndUpdate(req.params.id, new_tree, {}, function (err,thetree) {
-                if (err) { return next(err); }
-                   // Successful - redirect to book detail page.
-                   res.redirect(thetree.url);
-                });
+        else{
+
+          // Extract the validation errors from a request.
+          const errors = validationResult(req);
+
+          // Create a genre object with escaped and trimmed data.
+          var new_tree = new tree({
+                longitude: req.body.longitude,
+                latitude: req.body.latitude,
+                common_name: req.body.common_name,
+                height: req.body.height,
+                DBH: req.body.DBH,
+                "Branch 1 (cm)": req.body.Branch_1,
+                "Branch 2 (cm)": req.body.Branch_2,
+                "Branch 3 (cm)": req.body.Branch_3,
+                "Branch 4 (cm)": req.body.Branch_4,
+                first: req.body.first,
+                datum: req.body.datum,
+                _id:req.params.id
+              }
+          );
+
+
+          if (!errors.isEmpty()) {
+              // There are errors. Render the form again with sanitized values/error messages.
+              console.log(errors.array());
+              res.render('editTree', { title: 'Edit Tree', errors: errors.array()});
+              return;
+          }
+          else {
+              // Data from form is valid.
+              // Check if Genre with same name already exists.
+              tree.findByIdAndUpdate(req.params.id, new_tree, {}, function (err,thetree) {
+                  if (err) { return next(err); }
+                     // Successful - redirect to book detail page.
+                     res.redirect(thetree.url);
+                  });
+          }
         }
     }
 ];

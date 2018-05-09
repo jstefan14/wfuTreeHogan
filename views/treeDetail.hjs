@@ -15,11 +15,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
-	<title>{{title}}</title>
-	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/treeDetail.js"></script>
-	<meta charset=utf-8 />
+  	<title>{{title}}</title>
+  	<link rel='stylesheet' href='/stylesheets/style.css' />
+  	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  	<script type="text/javascript" src="/js/treeDetail.js"></script>
+  	<meta charset=utf-8 />
 </head>
 <body>
 
@@ -183,6 +183,7 @@
     $("#profile").css('display', 'block');
     $("#pic").attr('src', profile.getImageUrl());
     document.getElementById('email').value = profile.getEmail();
+    console.log(document.getElementById('email').value);
   }
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
