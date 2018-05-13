@@ -56,6 +56,7 @@
                   $(".g-signin2").css("display", "block");
                   $(".g-signout").css("display", "none");
                   $("#profile").css('display', 'none');
+                  document.getElementById('email').value = '';
                 })
               }
             </script>

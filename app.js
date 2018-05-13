@@ -1,3 +1,11 @@
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://admin:admin@ds251849.mlab.com:51849/wfu-tree-inventory';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,14 +17,6 @@ var usersRouter = require('./routes/users');
 var dataRouter = require('./routes/data');
 
 var app = express();
-
-//Set up mongoose connection
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb://admin:admin@ds251849.mlab.com:51849/wfu-tree-inventory';
-mongoose.connect(mongoDB);
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

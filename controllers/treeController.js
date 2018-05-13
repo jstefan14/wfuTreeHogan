@@ -1,6 +1,7 @@
 var tree = require('../models/tree');
 var species = require('../models/species');
 var user = require('../models/user');
+var user_group = require('../models/user_group');
 var mongoose = require('mongoose');
 var async = require('async');
 const { body,validationResult } = require('express-validator/check');
@@ -103,7 +104,7 @@ exports.tree_create_get = function(req, res) {
 };
 
 // Handle tree create on POST.
-exports.tree_create_post =   [
+exports.tree_create_post = [
     // Validate that the name, label, longitude, latitude and collector field is not empty.
     body('common_name', 'Tree name required').isLength({ min: 1 }).trim(),
     body('tree_label', 'Tree Label required').isLength({ min: 1 }).trim(),
@@ -120,9 +121,13 @@ exports.tree_create_post =   [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-
-        console.log(req.body.email);
-        if(req.body.email != "lius214@wfu.edu"){
+      user.findOne({"user_id" : req.body.email})
+      .populate('user_group')
+      .exec(function (err, result) {
+        if (err) { return next(err); }
+        //Successful, so render
+        // console.log(req.body.email);
+        if(!result || !result.user_group.privilege.includes("delete")){
           res.render("noAccess");
         }
         else{
@@ -177,6 +182,7 @@ exports.tree_create_post =   [
                });
           }
         }
+      });
     }
 ];
 
@@ -187,22 +193,16 @@ exports.tree_delete_get = function(req, res) {
 
 // Handle tree delete on POST..
 exports.tree_delete_post = function(req, res, next) {
-  // var query = {};
-  // query["user_id"] = req.body.email;
-  // console.log(query);
-  // user.find({})
-  // .populate('user_group')
-  // .exec(function (err, result) {
-  //   if (err) { return next(err); }
-  //   //Successful, so render
-  //   console.log(result);
-  // });
-
-  if(req.body.email != "lius214@wfu.edu"){
-    console.log(req.body.email);
-    res.render("noAccess");
-  }
-  else{
+  user.findOne({"user_id" : req.body.email})
+  .populate('user_group')
+  .exec(function (err, result) {
+    if (err) { return next(err); }
+    console.log(result);
+    // console.log(req.body.email);
+    if(!result || !result.user_group.privilege.includes("delete")){
+      res.render("noAccess");
+    }
+    else{
     tree.findByIdAndRemove(req.params.id, function (err, deletedTree) {
       if (err) {
         res.send('Error Deleting Data');
@@ -211,6 +211,7 @@ exports.tree_delete_post = function(req, res, next) {
       }
     });
   }
+  });
 };
 
 // Display tree update form on GET.
@@ -261,9 +262,15 @@ exports.tree_update_post = [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
+      user.findOne({"user_id" : req.body.email})
+      .populate('user_group')
+      .exec(function (err, result) {
+        if (err) { return next(err); }
+        //Successful, so render
+        console.log(result);
+        // console.log(req.body.email);
 
-        console.log(req.body.email);
-        if(req.body.email != "lius214@wfu.edu"){
+        if(!result || !result.user_group.privilege.includes("edit")){
           res.render("noAccess");
         }
         else{
@@ -305,5 +312,7 @@ exports.tree_update_post = [
                   });
           }
         }
+
+      });
     }
 ];

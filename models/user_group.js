@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var UserGroupSchema = new Schema(
   {
-    user_group: {type: String, required: true},
+    group_name: {type: String, required: true},
     privilege: {type: Array, required: true}
   }
 );
@@ -13,7 +13,7 @@ var UserGroupSchema = new Schema(
 UserGroupSchema
 .virtual('name')
 .get(function () {
-  return this.user_group;
+  return this.group_name;
 });
 
 // Virtual for author's URL
