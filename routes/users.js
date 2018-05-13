@@ -34,9 +34,10 @@ function addTree(req, res, next) {
 
 
 function search_tree(req, res, next) {
+  var search_key = req.body.search_key.replace(/\s/g, '');
   var query = {};
   var search_attribute = req.body.search_attribute;
-  query[search_attribute] = new RegExp(req.body.search_key, "i");
+  query[search_attribute] = new RegExp(search_key, "i");
 
   async.parallel({
   tree: function(callback) {
