@@ -70,10 +70,10 @@
       		Common Name:<br>
       		<input type="text" name="common_name" value="">
       		<br>
-          Longitude:<br>
+          Longitude (in decimal):<br>
           <input type="text" name="longitude" value="">
           <br>
-          Latitude:<br>
+          Latitude (in decimal):<br>
           <input type="text" name="latitude" value="">
           <br>
           <!-- Date and Time:<br>
