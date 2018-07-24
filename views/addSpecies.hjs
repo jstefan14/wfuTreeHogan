@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<!-- {{ title }} tells HJS to use variable title when
+  		rendering this page -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc" async defer></script>
+
+      <meta name="google-signin-client_id" content="136058100246-enfq4sjemvsebq3iouka1dtbk6b6g4k5.apps.googleusercontent.com">
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
+      <script type="text/javascript" src="/Leaflet.GoogleMutant.js"></script>
+
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+      <title>{{title}}</title>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+      <script type="text/javascript" src="/js/treeDetail.js"></script>
+      <meta charset=utf-8 />
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- <div id="map" style="width:500px; height:500px" ></div> -->
+      <!-- top nav bar -->
+      <div id="navigation bar" class="navbar">
+        <div id="navigation bar buttons">
+          <ul>
+            <li> <a href="/">Home</a> </li>
+            <li> <a href="/users/addTree">Add a Tree</a> </li>
+            <div class="g-signin2" data-onsuccess="onSignIn" style="float: right"></div>
+            <div class="g-signout" style="display: none">
+              <button onclick="signOut()" class="btn btn-danger" style="float: right">Signout</button>
+            </div>
+            <div id='profile' style="float: right; display: none">
+              <img id="pic" height=20px width=20px>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+      <!-- logo and search -->
+      <div id="logo and search" class="black_back">
+        <div class="logo" id="logo">
+          <a href="/">
+            <img id="site-logo" src="/image/WFU_logo.png" height=70px width=210px alt="WakeForestUniversity">
+          </a >
+        </div>
+      </div>
+
+      <!-- sub header -->
+      <div id="sub header"></div>
+      <div id="export-panel" class="modal fade"></div>
+
+    </div>
+
+    <div class='add'>
+        <h1>Add a Tree</h1>
+
+        <form action="/data/species/create" method="post">
+          <input id="email" type="hidden" name="email" value="">
+
+      		Common Name:<br>
+      		<input type="text" name="common_name" value="">
+      		<br>
+          Scientific Name:<br>
+          <input type="text" name="scientific_name" value="">
+          <br>
+          Family:<br>
+          <input type="text" name="family" value="">
+          <br>
+          Order:<br>
+          <input type="text" name="order" value="">
+          <br>
+          Type:<br>
+          <input type="text" name="type" value="">
+          <br>
+          <br>
+       	 	<input type="submit" dvalue="Submit">
+      	</form>
+
+      	<div>
+          {{#errors}}   <!-- Iterate over the array in users variable -->
+           <li>{{msg}} <!-- fields in the array entry -->
+          {{/errors}}	<!-- end of loop -->
+      	</div>
+
+        <div>
+          <a href="/">Back to main page</a>
+        </div>
+        <p></p>
+    </div>
+    <script type="text/javascript">
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        $(".g-signin2").css("display", "none");
+        $(".g-signout").css("display", "block");
+        $("#profile").css('display', 'block');
+        $("#pic").attr('src', profile.getImageUrl());
+        document.getElementById('email').value = profile.getEmail();
+        console.log(document.getElementById('email').value);
+      }
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+          alert("You are logged out");
+          $(".g-signin2").css("display", "block");
+          $(".g-signout").css("display", "none");
+          $("#profile").css('display', 'none');
+          document.getElementById('email').value = '';
+        })
+      }
+    </script>
+  </body>
+</html>

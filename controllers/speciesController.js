@@ -18,15 +18,10 @@ exports.species_detail = function(req, res) {
 
 // Display species create form on GET.
 exports.species_create_get = function(req, res) {
-    // let test = new species({
-    //   common_name: "test",
-    //   scientific_name: "test",
-    //   family: "test",
-    //   order: "test",
-    //   type: "test",
-    // });
-    // console.log(test);
-    // test.save();
+  res.render(
+    'addSpecies',
+    { title: 'Add Species' }
+  );
 };
 
 // Handle species create on POST.

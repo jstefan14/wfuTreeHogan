@@ -162,7 +162,7 @@ exports.tree_create_post = [
           }
           else {
               // Data from form is valid.
-              // Check if Genre with same name already exists.
+              // Check if tree with same name already exists.
               tree.findOne({ 'tree_label': req.body.tree_label })
               .exec( function(err, found_tree) {
                    if (err) { return next(err); }
