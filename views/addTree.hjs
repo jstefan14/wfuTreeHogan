@@ -67,8 +67,22 @@
       		Tree Label:<br>
       		<input type="text" name="tree_label" value="">
       		<br>
+          <!-- need to consider using select tag, consider whether select using common name or scientific name -->
       		Common Name:<br>
-      		<input type="text" name="common_name" value="">
+          <select name="common_name" id="species_selected" onchange="redir();">
+            <!-- will need a loop here displaying all the saved species -->
+            {{#species_list}}
+            <option value="{{common_name}}">{{common_name}}</option>
+            {{/species_list}}
+            <option value="new">Add New Species</option>
+          </select>
+          <script>
+            function redir(){
+              if (document.getElementById('species_selected').value == 'new'){
+                window.location.replace('/data/species/create');
+              }
+            }
+          </script>
       		<br>
           Longitude (in decimal):<br>
           <input type="text" name="longitude" value="">

@@ -97,10 +97,29 @@ exports.tree_info = function(req, res, next){
 
 // Display tree create form on GET.
 exports.tree_create_get = function(req, res) {
-    res.render(
-      'addTree',
-      { title: 'Add Tree' }
-    );
+  async.parallel({
+    species: function(callback){
+      species.find({})
+             .exec(callback);
+    },
+    },
+    function(err, results){
+      if (err) {return next(err);}
+      if (results.species==null){
+        var err = new Error('Error encountered loading species');
+        err.status = 404;
+        return next(err);
+      }
+      // FIXME not tested!!!!!!
+      // for testing purposes
+      // console.log(results);
+      // console.log(results.species);
+      // render the page with all species found, if no error
+      res.render(
+        'addTree',
+        { title: 'Add Tree' , species_list: results.species}
+      );
+    });
 };
 
 // Handle tree create on POST.
@@ -127,7 +146,7 @@ exports.tree_create_post = [
         if (err) { return next(err); }
         //Successful, so render
         // console.log(req.body.email);
-        if(!result || !result.user_group.privilege.includes("delete")){
+        if(!result || !result.user_group.privilege.includes("add")){
           res.render("noAccess");
         }
         else{
