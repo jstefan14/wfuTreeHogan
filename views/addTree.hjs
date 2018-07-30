@@ -84,22 +84,39 @@
             }
           </script>
       		<br>
-          Longitude (in decimal):<br>
-          <input type="text" name="longitude" value="">
+
+          <select>
+            Input Option: <br>
+            <option value='decimal'>Decimal</option>
+            <option value='degree'>Degree</option>
+          </select>
+
+          <div id='decimal' style='display: inline'>
+            Longitude (in decimal):<br>
+            <input type="text" name="longitude" value="">
+            <br>
+            Latitude (in decimal):<br>
+            <input type="text" name="latitude" value="">
+          </div>
+
+          <div id='degree' style='display: inline'>
+            Longitude (in degree):<br>
+            <input type="text" name="longitude" value="">
+            <br>
+            Latitude (in degree):<br>
+            <input type="text" name="latitude" value="">
+          </div>
+          <script>
+            
+          </script>
+
           <br>
-          Latitude (in decimal):<br>
-          <input type="text" name="latitude" value="">
-          <br>
-          <!-- Date and Time:<br>
-          <input type="text" name="date_collected" value="">
-          <br> -->
           Height:<br>
           <input type="text" name="height" value="">
           <br>
           Diameter at Breast Height:<br>
           <input type="text" name="DBH" value="">
           <br>
-
           Branch 1 (cm)<br>
           <input type="text" name="Branch_1" value="">
           <br>
