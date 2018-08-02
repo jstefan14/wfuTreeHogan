@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc" async defer></script>
+  	<!-- {{ title }} tells HJS to use variable title when
+  		rendering this page -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnFQzpL5OApdNsBmlfu2RDg1swXpbemc" async defer></script>
 
-    <meta name="google-signin-client_id" content="136058100246-enfq4sjemvsebq3iouka1dtbk6b6g4k5.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <meta name="google-signin-client_id" content="136058100246-enfq4sjemvsebq3iouka1dtbk6b6g4k5.apps.googleusercontent.com">
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-  	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
-  	<script type="text/javascript" src="/Leaflet.GoogleMutant.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
+      <script type="text/javascript" src="/Leaflet.GoogleMutant.js"></script>
 
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
-  	<title>{{title}}</title>
-  	<link rel='stylesheet' href='/stylesheets/style.css' />
-  	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  	<script type="text/javascript" src="/js/treeDetail.js"></script>
-  	<meta charset=utf-8 />
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+      <title>{{title}}</title>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+      <script type="text/javascript" src="/js/treeDetail.js"></script>
+      <meta charset=utf-8 />
   </head>
   <body>
     <div id="wrapper">
@@ -57,44 +59,25 @@
     </div>
 
     <div class='add'>
-        <h1>Editing Tree: {{tree_label}}</h1>
+        <h1>Add a Tree</h1>
 
-        <form action="/data/tree/{{id}}/update" method="post">
+        <form action="/data/species/create" method="post">
           <input id="email" type="hidden" name="email" value="">
 
       		Common Name:<br>
-      		<input type="text" name="common_name" value="{{common_name}}">
+      		<input type="text" name="common_name" value="">
       		<br>
-          Longitude:<br>
-          <input type="text" name="longitude" value="{{longitude}}">
+          Scientific Name:<br>
+          <input type="text" name="scientific_name" value="">
           <br>
-          Latitude:<br>
-          <input type="text" name="latitude" value="{{latitude}}">
+          Family:<br>
+          <input type="text" name="family" value="">
           <br>
-          Height:<br>
-          <input type="text" name="height" value="{{height}}">
+          Order:<br>
+          <input type="text" name="order" value="">
           <br>
-          Diameter at Breast Height:<br>
-          <input type="text" name="DBH" value="{{DBH}}">
-          <br>
-
-          Branch 1 (cm)<br>
-          <input type="text" name="Branch_1" value="{{b_1}}">
-          <br>
-          Branch 2 (cm):<br>
-          <input type="text" name="Branch_2" value="{{b_2}}">
-          <br>
-          Branch 3 (cm):<br>
-          <input type="text" name="Branch_3" value="{{b_3}}">
-          <br>
-          Branch 4 (cm):<br>
-          <input type="text" name="Branch_4" value="{{b_4}}">
-          <br>
-          First:<br>
-          <input type="text" name="first" value="{{first}}">
-          <br>
-          Datum:<br>
-          <input type="text" name="datum" value="{{datum}}">
+          Type:<br>
+          <input type="text" name="type" value="">
           <br>
           <br>
        	 	<input type="submit" dvalue="Submit">
@@ -107,7 +90,7 @@
       	</div>
 
         <div>
-          <a href="/">Back to main page</a>
+          <a href="/data/tree/create">Back to Add a Tree</a>
         </div>
         <p></p>
     </div>
