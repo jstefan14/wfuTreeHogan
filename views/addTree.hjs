@@ -31,7 +31,7 @@
         <div id="navigation bar buttons">
           <ul>
             <li> <a href="/">Home</a> </li>
-            <li> <a href="/users/addTree">Add a Tree</a> </li>
+            <li> <a href="/data/tree/create">Add a Tree</a> </li>
             <div class="g-signin2" data-onsuccess="onSignIn" style="float: right"></div>
             <div class="g-signout" style="display: none">
               <button onclick="signOut()" class="btn btn-danger" style="float: right">Signout</button>
@@ -61,7 +61,7 @@
     <div class='add'>
         <h1>Add a Tree</h1>
 
-        <form action="/data/tree/create" method="post">
+        <form name="treeDetailInput" action="/data/tree/create" method="post" onsubmit="dataCalculation();">
           <input id="email" type="hidden" name="email" value="">
 
       		Tree Label:<br>
@@ -85,12 +85,12 @@
           </script>
       		<br>
 
-          <select>
-            Input Option: <br>
+          Coordinate Input Option: <br>
+          <select name="input_option" id="input_option" onchange="input();">
             <option value='decimal'>Decimal</option>
             <option value='degree'>Degree</option>
           </select>
-
+          <br>
           <div id='decimal' style='display: inline'>
             Longitude (in decimal):<br>
             <input type="text" name="longitude" value="">
@@ -98,17 +98,52 @@
             Latitude (in decimal):<br>
             <input type="text" name="latitude" value="">
           </div>
-
-          <div id='degree' style='display: inline'>
+          <div id='degree' style='display: none'>
             Longitude (in degree):<br>
-            <input type="text" name="longitude" value="">
+            <input type="text" name="lodegree" value="" style="width: 19%">&deg;
+            <input type="text" name="lominute" value="" style="width: 19%">&prime;
+            <input type="text" name="losecond" value="" style="width: 19%">&Prime;
+            <select name="loew" style="width: 15%">
+              <option value="east">E</option>
+              <option value="west">W</option>
+            </select>
             <br>
             Latitude (in degree):<br>
-            <input type="text" name="latitude" value="">
+            <input type="text" name="ladegree" value="" style="width: 19%">&deg;
+            <input type="text" name="laminute" value="" style="width: 19%">&prime;
+            <input type="text" name="lasecond" value="" style="width: 19%">&Prime;
+            <select name="lans" style="width: 15%">
+              <option value="north">N</option>
+              <option value="south">S</option>
+            </select>
           </div>
           <script>
-            
+            function input(){
+              if (document.getElementById('input_option').value == 'decimal'){
+                document.getElementById('decimal').style.display="inline";
+                document.getElementById('degree').style.display="none";
+              }
+              else{
+                document.getElementById('decimal').style.display="none";
+                document.getElementById('degree').style.display="inline";
+              }
+              dataCalculation();
+            }
+
+            function dataCalculation(){
+              var option = treeDetailInput.input_option.value;
+              if(option=="degree"){
+                treeDetailInput.longitude.value = ((parseFloat(treeDetailInput.losecond.value) / 60 + parseFloat(treeDetailInput.lominute.value)) / 60 + parseFloat(treeDetailInput.lodegree.value)) * ((treeDetailInput.loew.value == "east") ? 1 : -1);
+                treeDetailInput.latitude.value = ((parseFloat(treeDetailInput.lasecond.value) / 60 + parseFloat(treeDetailInput.laminute.value)) / 60 + parseFloat(treeDetailInput.ladegree.value)) * ((treeDetailInput.lans.value == "north") ? 1 : -1);
+              }
+              treeDetailInput.longitude.value = (treeDetailInput.longitude.value.toString() == "NaN") ? "" : treeDetailInput.longitude.value.toString();
+              treeDetailInput.latitude.value = (treeDetailInput.latitude.value.toString() == "NaN") ? "" : treeDetailInput.latitude.value.toString();
+            }
           </script>
+          <br>
+          Datum:<br>
+          <input type="text" name="datum" value="">
+          <br>
 
           <br>
           Height:<br>
@@ -117,27 +152,10 @@
           Diameter at Breast Height:<br>
           <input type="text" name="DBH" value="">
           <br>
-          Branch 1 (cm)<br>
-          <input type="text" name="Branch_1" value="">
-          <br>
-          Branch 2 (cm):<br>
-          <input type="text" name="Branch_2" value="">
-          <br>
-          Branch 3 (cm):<br>
-          <input type="text" name="Branch_3" value="">
-          <br>
-          Branch 4 (cm):<br>
-          <input type="text" name="Branch_4" value="">
-          <br>
-          First:<br>
-          <input type="text" name="first" value="">
-          <br>
           Collector Name:<br>
           <input type="text" name="collector" value="">
           <br>
-          Datum:<br>
-          <input type="text" name="datum" value="">
-          <br>
+
           <br>
        	 	<input type="submit" dvalue="Submit">
       	</form>

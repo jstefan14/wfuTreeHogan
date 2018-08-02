@@ -110,10 +110,6 @@ exports.tree_create_get = function(req, res) {
         err.status = 404;
         return next(err);
       }
-      // FIXME not tested!!!!!!
-      // for testing purposes
-      // console.log(results);
-      // console.log(results.species);
       // render the page with all species found, if no error
       res.render(
         'addTree',
@@ -153,6 +149,7 @@ exports.tree_create_post = [
           // Extract the validation errors from a request.
           const errors = validationResult(req);
 
+          console.log(req.body);
           // Create a genre object with escaped and trimmed data.
           var new_tree = new tree(
             {   tree_label: req.body.tree_label,
@@ -176,8 +173,24 @@ exports.tree_create_post = [
           if (!errors.isEmpty()) {
               // There are errors. Render the form again with sanitized values/error messages.
               console.log(errors.array());
-              res.render('addTree', { title: 'Add Tree', errors: errors.array()});
-              return;
+              async.parallel({
+                species: function(callback){
+                  species.find({})
+                         .exec(callback);
+                },
+                },
+                function(err, results){
+                  if (err) {return next(err);}
+                  if (results.species==null){
+                    var err = new Error('Error encountered loading species');
+                    err.status = 404;
+                    return next(err);
+                  }
+                  // render the page with all species found, if no error
+
+                  res.render('addTree', { title: 'Add Tree', species_list: results.species, errors: errors.array()});
+                });
+
           }
           else {
               // Data from form is valid.
